@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 
+import { ThemeProvider, themeScript } from "@/components/portfolio/theme-provider";
 import { siteContent } from "@/content/site-content";
 import { absoluteUrl, siteUrl } from "@/lib/site-url";
 
@@ -65,9 +66,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
+      </head>
       <body className={`${instrumentSans.variable} ${plexMono.variable}`}>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

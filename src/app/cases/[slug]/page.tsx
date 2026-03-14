@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Reveal } from "@/components/portfolio/reveal";
+import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import {
   getAdjacentCaseStudies,
   getCaseStudy,
@@ -71,31 +72,44 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
 
   return (
     <main className={styles.page} data-case-page>
-      <Reveal>
-        <Link className={styles.backLink} href="/#cases">
-          Back to portfolio
-        </Link>
+      {/* Navigation bar */}
+      <Reveal variant="fade" duration={0.6}>
+        <div className={styles.navBar}>
+          <Link className={styles.backLink} href="/#cases">
+            Back to portfolio
+          </Link>
+          <ThemeToggle />
+        </div>
       </Reveal>
 
+      {/* Hero section with staged entrance */}
       <section className={styles.hero}>
-        <Reveal className={styles.heroCopy}>
-          <p className={styles.eyebrow}>
-            ({caseStudy.number}) {caseStudy.eyebrow}
-          </p>
-          <h1 className={styles.heroTitle}>{caseStudy.title}</h1>
-          <p className={styles.heroSummary}>{caseStudy.summary}</p>
-          <p className={styles.heroOutcome}>{caseStudy.outcome}</p>
+        <div className={styles.heroCopy}>
+          <Reveal variant="fade" delay={0.1} duration={0.7}>
+            <p className={styles.eyebrow}>
+              ({caseStudy.number}) {caseStudy.eyebrow}
+            </p>
+          </Reveal>
 
-          <div className={styles.heroTags}>
-            {caseStudy.tags.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
-          </div>
-        </Reveal>
+          <Reveal variant="blur-to-crisp" delay={0.15} duration={1}>
+            <h1 className={styles.heroTitle}>{caseStudy.title}</h1>
+          </Reveal>
 
-        <Reveal className={styles.heroVisual} delay={0.08}>
+          <Reveal variant="fade-up" delay={0.3} duration={0.8}>
+            <p className={styles.heroSummary}>{caseStudy.summary}</p>
+            <p className={styles.heroOutcome}>{caseStudy.outcome}</p>
+
+            <div className={styles.heroTags}>
+              {caseStudy.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal className={styles.heroVisual} variant="scale-in" delay={0.2} duration={1}>
           <div className={styles.imageFrame}>
             <Image
               src={caseStudy.previewImage}
@@ -109,13 +123,16 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
         </Reveal>
       </section>
 
+      {/* Content grid with cascade rhythm */}
       <section className={styles.contentGrid}>
         <div className={styles.contentColumn}>
           {caseStudy.sections.map((section, index) => (
             <Reveal
               key={section.title}
               className={styles.sectionCard}
-              delay={0.03 * index}
+              variant="fade-up"
+              delay={0.05 * index}
+              duration={0.7}
             >
               <p className={styles.sectionLabel}>{section.title}</p>
               <ul className={styles.sectionList}>
@@ -127,7 +144,7 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
           ))}
         </div>
 
-        <Reveal className={styles.rail} delay={0.08}>
+        <Reveal className={styles.rail} variant="fade-up" delay={0.15} duration={0.8}>
           <aside className={styles.railCard}>
             <div className={styles.railBlock}>
               <p className={styles.sectionLabel}>Quick read</p>
@@ -173,7 +190,7 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
         </Reveal>
       </section>
 
-      <Reveal className={styles.navigationFooter}>
+      <Reveal className={styles.navigationFooter} variant="fade-up" delay={0.1}>
         <div className={styles.footerCard}>
           <p className={styles.sectionLabel}>Continue reading</p>
           <div className={styles.footerLinks}>
