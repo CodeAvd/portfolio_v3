@@ -1,25 +1,21 @@
 "use client";
 
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
 
 import styles from "./ambient-hero.module.css";
 
 export function AmbientHero() {
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Subtle parallax on scroll
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  // Subtle parallax on scroll - using window scroll for smooth effect
+  const { scrollYProgress } = useScroll();
 
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const parallaxScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const parallaxY = useTransform(scrollYProgress, [0, 0.3], [0, 60]);
+  const parallaxScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.08]);
+  const secondaryParallaxY = useTransform(scrollYProgress, [0, 0.3], [0, 40]);
 
   return (
-    <div className={styles.frame} ref={containerRef} aria-hidden="true">
+    <div className={styles.frame} aria-hidden="true">
       <div className={styles.grid} />
 
       {/* Core orb - slow orbital drift */}
@@ -57,7 +53,7 @@ export function AmbientHero() {
           reduceMotion
             ? undefined
             : {
-                y: useTransform(scrollYProgress, [0, 1], [0, 40]),
+                y: secondaryParallaxY,
               }
         }
         animate={
