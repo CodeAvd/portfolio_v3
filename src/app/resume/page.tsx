@@ -5,25 +5,11 @@ import Link from "next/link";
 import { Reveal } from "@/components/portfolio/reveal";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import { siteContent } from "@/content/site-content";
+import { proofLevelLabelShort } from "@/lib/content-utils";
 import { absoluteUrl } from "@/lib/site-url";
+import { getExternalLinkProps } from "@/lib/url-utils";
 
 import styles from "./page.module.css";
-
-function isExternalHref(href: string) {
-  return href.startsWith("http") || href.startsWith("mailto:");
-}
-
-function proofLevelLabel(level: string) {
-  if (level === "core") {
-    return "Core";
-  }
-
-  if (level === "working-knowledge") {
-    return "Working knowledge";
-  }
-
-  return "Shipped";
-}
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -48,7 +34,7 @@ export default function ResumePage() {
   const { meta, profileMedia, resume } = siteContent;
 
   return (
-    <main className={styles.page} data-resume-page>
+    <main id="main-content" tabIndex={-1} className={styles.page} data-resume-page>
       {/* Utility bar with theme toggle */}
       <Reveal variant="fade" duration={0.6}>
         <div className={styles.utilityBar}>
@@ -87,8 +73,7 @@ export default function ResumePage() {
                       <a
                         className={styles.textLink}
                         href={item.href}
-                        target={isExternalHref(item.href) ? "_blank" : undefined}
-                        rel={isExternalHref(item.href) ? "noopener noreferrer" : undefined}
+                        {...getExternalLinkProps(item.href)}
                       >
                         {item.label}: {item.value}
                       </a>
@@ -122,7 +107,7 @@ export default function ResumePage() {
                   <div className={styles.groupHeader}>
                     <h3 className={styles.itemTitle}>{group.title}</h3>
                     <span className={styles.levelTag}>
-                      {proofLevelLabel(group.level)}
+                      {proofLevelLabelShort(group.level)}
                     </span>
                   </div>
 
@@ -182,8 +167,7 @@ export default function ResumePage() {
                       <a
                         className={styles.projectLink}
                         href={project.href}
-                        target={isExternalHref(project.href) ? "_blank" : undefined}
-                        rel={isExternalHref(project.href) ? "noopener noreferrer" : undefined}
+                        {...getExternalLinkProps(project.href)}
                       >
                         Open
                       </a>

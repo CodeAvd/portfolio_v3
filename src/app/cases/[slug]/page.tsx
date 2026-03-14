@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/portfolio/breadcrumbs";
 import { Reveal } from "@/components/portfolio/reveal";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import {
@@ -11,16 +12,13 @@ import {
   siteContent,
 } from "@/content/site-content";
 import { absoluteUrl } from "@/lib/site-url";
+import { getExternalLinkProps } from "@/lib/url-utils";
 
 import styles from "./page.module.css";
 
 type CasePageProps = {
   params: Promise<{ slug: string }>;
 };
-
-function isExternalHref(href: string) {
-  return href.startsWith("http") || href.startsWith("mailto:");
-}
 
 export async function generateStaticParams() {
   return siteContent.caseStudies.map((caseStudy) => ({
@@ -71,13 +69,23 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
   const adjacent = getAdjacentCaseStudies(slug);
 
   return (
-    <main className={styles.page} data-case-page>
+    <main id="main-content" tabIndex={-1} className={styles.page} data-case-page>
       {/* Navigation bar */}
       <Reveal variant="fade" duration={0.6}>
         <div className={styles.navBar}>
-          <Link className={styles.backLink} href="/#cases">
-            Back to portfolio
-          </Link>
+          <div className={styles.navLeft}>
+            <Link className={styles.backLink} href="/#cases">
+              Back to portfolio
+            </Link>
+            <Breadcrumbs
+              className={styles.breadcrumbs}
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Cases", href: "/#cases" },
+                { label: caseStudy.title },
+              ]}
+            />
+          </div>
           <ThemeToggle />
         </div>
       </Reveal>
@@ -174,12 +182,7 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
                     key={artifact.label}
                     className={styles.artifactLink}
                     href={artifact.href}
-                    target={isExternalHref(artifact.href) ? "_blank" : undefined}
-                    rel={
-                      isExternalHref(artifact.href)
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
+                    {...getExternalLinkProps(artifact.href)}
                   >
                     {artifact.label}
                   </a>

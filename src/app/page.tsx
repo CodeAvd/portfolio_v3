@@ -5,28 +5,10 @@ import { AmbientHero } from "@/components/portfolio/ambient-hero";
 import { Reveal } from "@/components/portfolio/reveal";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import { siteContent } from "@/content/site-content";
+import { proofLevelLabel } from "@/lib/content-utils";
+import { isInternalRouteHref, getExternalLinkProps } from "@/lib/url-utils";
 
 import styles from "./page.module.css";
-
-function isExternalHref(href: string) {
-  return href.startsWith("http") || href.startsWith("mailto:");
-}
-
-function isInternalRouteHref(href: string) {
-  return href.startsWith("/") && !href.startsWith("//");
-}
-
-function proofLevelLabel(level: string) {
-  if (level === "core") {
-    return "Core proof";
-  }
-
-  if (level === "working-knowledge") {
-    return "Working knowledge";
-  }
-
-  return "Shipped build";
-}
 
 export default function Home() {
   const {
@@ -42,7 +24,7 @@ export default function Home() {
   } = siteContent;
 
   return (
-    <main className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
       {/* Topbar with staged entrance */}
       <Reveal variant="fade" duration={0.6}>
         <header className={styles.topbar}>
@@ -116,8 +98,7 @@ export default function Home() {
                         : styles.secondaryAction
                     }
                     href={cta.href}
-                    target={isExternalHref(cta.href) ? "_blank" : undefined}
-                    rel={isExternalHref(cta.href) ? "noopener noreferrer" : undefined}
+                    {...getExternalLinkProps(cta.href)}
                   >
                     {cta.label}
                   </a>
@@ -273,8 +254,7 @@ export default function Home() {
                 <a
                   className={styles.buildLink}
                   href={item.href}
-                  target={isExternalHref(item.href) ? "_blank" : undefined}
-                  rel={isExternalHref(item.href) ? "noopener noreferrer" : undefined}
+                  {...getExternalLinkProps(item.href)}
                 >
                   {item.linkLabel}
                 </a>
@@ -349,10 +329,7 @@ export default function Home() {
                       <a
                         className={styles.contactValue}
                         href={item.href}
-                        target={isExternalHref(item.href) ? "_blank" : undefined}
-                        rel={
-                          isExternalHref(item.href) ? "noopener noreferrer" : undefined
-                        }
+                        {...getExternalLinkProps(item.href)}
                       >
                         {item.value}
                       </a>

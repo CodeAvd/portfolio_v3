@@ -11,6 +11,22 @@
   gap: 1rem;
 }
 
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.breadcrumbs {
+  display: none;
+}
+
+@media (min-width: 721px) {
+  .breadcrumbs {
+    display: block;
+  }
+}
+
 .backLink {
   display: inline-flex;
   align-items: center;

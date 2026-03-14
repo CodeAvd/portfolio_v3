@@ -729,7 +729,36 @@
 /* ============================================
    Responsive Breakpoints
    ============================================ */
-@media (max-width: 1120px) {
+
+/* Intermediate breakpoint for smoother transitions */
+@media (max-width: 1120px) and (min-width: 961px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.6rem, 5vw, 4rem);
+  }
+
+  .sectionHeader {
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+  }
+
+  .caseCardFeatured {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .caseTitleFeatured {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .profileStage {
+    min-height: 34rem;
+  }
+}
+
+@media (max-width: 960px) {
   .hero,
   .sectionHeader,
   .caseCardFeatured,
@@ -866,8 +895,8 @@
   .contactButton {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
-    padding: 0.5rem 0.85rem;
+    min-height: 3rem;
+    padding: 0.65rem 1rem;
     font-size: 0.72rem;
     border-radius: var(--radius-sm);
     background: var(--bg-surface);
@@ -886,7 +915,7 @@
   .buildLink,
   .contactValue {
     font-size: 0.75rem;
-    min-height: 2.75rem;
+    min-height: 3rem;
     display: inline-flex;
     align-items: center;
   }
