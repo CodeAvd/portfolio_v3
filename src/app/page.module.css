@@ -26,15 +26,6 @@
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-:root,
-[data-theme="light"] {
-  --topbar-inset-glow: rgba(255, 255, 255, 0.5);
-}
-
-[data-theme="dark"] {
-  --topbar-inset-glow: rgba(255, 255, 255, 0.04);
-}
-
 .topbar:hover {
   border-color: var(--border-glow);
 }
@@ -252,21 +243,6 @@
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   transition: border-color var(--transition-slow);
-}
-
-:root,
-[data-theme="light"] {
-  --profile-stage-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 24%),
-    radial-gradient(circle at 80% 20%, rgba(214, 169, 141, 0.12), transparent 30%),
-    rgba(255, 255, 255, 0.48);
-}
-
-[data-theme="dark"] {
-  --profile-stage-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.08), transparent 24%),
-    radial-gradient(circle at 80% 20%, rgba(214, 169, 141, 0.06), transparent 30%),
-    rgba(42, 48, 56, 0.48);
 }
 
 .profileStage:hover {
@@ -497,21 +473,6 @@
     border-color var(--transition-base);
 }
 
-:root,
-[data-theme="light"] {
-  --case-featured-bg:
-    radial-gradient(circle at 5% 90%, rgba(139, 183, 188, 0.08), transparent 30%),
-    rgba(255, 255, 255, 0.6);
-  --case-visual-bg: linear-gradient(180deg, rgba(249, 244, 237, 0.9), rgba(237, 230, 220, 0.7));
-}
-
-[data-theme="dark"] {
-  --case-featured-bg:
-    radial-gradient(circle at 5% 90%, rgba(139, 183, 188, 0.06), transparent 30%),
-    rgba(42, 48, 56, 0.6);
-  --case-visual-bg: linear-gradient(180deg, rgba(42, 48, 56, 0.9), rgba(31, 37, 43, 0.85));
-}
-
 .caseCardSecondary {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -723,21 +684,6 @@
   align-content: start;
   gap: 1.25rem;
   background: var(--contact-lead-bg);
-}
-
-:root,
-[data-theme="light"] {
-  --contact-lead-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.18), transparent 32%),
-    rgba(255, 255, 255, 0.62);
-}
-
-[data-theme="dark"] {
-  --contact-lead-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.1), transparent 32%),
-    rgba(42, 48, 56, 0.62);
 }
 
 .contactStatement {

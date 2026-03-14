@@ -102,6 +102,53 @@
   --accent-warm: var(--accent-secondary);
   --shadow-soft: var(--shadow-lg);
   --shadow-card: var(--shadow-md);
+
+  /* Component-specific theme variables - Light */
+  --topbar-inset-glow: rgba(255, 255, 255, 0.5);
+  --profile-stage-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 24%),
+    radial-gradient(circle at 80% 20%, rgba(214, 169, 141, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.48);
+  --case-featured-bg:
+    radial-gradient(circle at 5% 90%, rgba(139, 183, 188, 0.08), transparent 30%),
+    rgba(255, 255, 255, 0.6);
+  --case-visual-bg: linear-gradient(180deg, rgba(249, 244, 237, 0.9), rgba(237, 230, 220, 0.7));
+  --contact-lead-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.18), transparent 32%),
+    rgba(255, 255, 255, 0.62);
+  --case-image-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.22), transparent 30%),
+    rgba(255, 255, 255, 0.62);
+  --metric-item-bg: rgba(246, 240, 232, 0.74);
+  --resume-shell-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 22%),
+    radial-gradient(circle at 85% 16%, rgba(214, 169, 141, 0.12), transparent 24%),
+    rgba(255, 255, 255, 0.62);
+  --portrait-frame-bg: linear-gradient(180deg, rgba(249, 244, 237, 0.9), rgba(237, 230, 220, 0.72));
+  
+  /* Ambient Hero - Light */
+  --ambient-frame-bg:
+    radial-gradient(circle at 25% 20%, rgba(144, 188, 188, 0.32), transparent 32%),
+    radial-gradient(circle at 74% 26%, rgba(221, 180, 153, 0.34), transparent 34%),
+    linear-gradient(180deg, rgba(252, 248, 242, 0.9), rgba(240, 233, 221, 0.62));
+  --ambient-inset-glow: rgba(255, 255, 255, 0.8);
+  --ambient-grid-color: rgba(17, 18, 22, 0.04);
+  --ambient-orb-core: 
+    radial-gradient(circle at 30% 30%, rgba(255, 249, 243, 0.88), rgba(255, 249, 243, 0.1) 36%),
+    conic-gradient(from 110deg, rgba(122, 187, 191, 0.95), rgba(255, 231, 207, 0.92), rgba(122, 187, 191, 0.95));
+  --ambient-orb-secondary:
+    radial-gradient(circle at 50% 40%, rgba(255, 248, 239, 0.8), transparent 36%),
+    conic-gradient(from 220deg, rgba(237, 188, 160, 0.78), rgba(157, 202, 204, 0.72), rgba(237, 188, 160, 0.8));
+  --ambient-orb-highlight:
+    radial-gradient(circle, rgba(255, 253, 250, 0.9), rgba(255, 253, 250, 0.18) 55%, transparent 70%);
+  --ambient-core-shadow:
+    0 0 80px rgba(122, 187, 191, 0.22),
+    0 0 120px rgba(226, 179, 147, 0.26);
+  --ambient-ring-color: rgba(17, 18, 22, 0.1);
+  --ambient-haze-color: rgba(248, 242, 235, 0.78);
+  --ambient-shimmer-color: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
 }
 
 /* ============================================
@@ -162,6 +209,53 @@
   --line-strong: var(--border-strong);
   --accent-cool: var(--accent-primary);
   --accent-warm: var(--accent-secondary);
+
+  /* Component-specific theme variables - Dark */
+  --topbar-inset-glow: rgba(255, 255, 255, 0.04);
+  --profile-stage-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.08), transparent 24%),
+    radial-gradient(circle at 80% 20%, rgba(214, 169, 141, 0.06), transparent 30%),
+    rgba(42, 48, 56, 0.48);
+  --case-featured-bg:
+    radial-gradient(circle at 5% 90%, rgba(139, 183, 188, 0.06), transparent 30%),
+    rgba(42, 48, 56, 0.6);
+  --case-visual-bg: linear-gradient(180deg, rgba(42, 48, 56, 0.9), rgba(31, 37, 43, 0.85));
+  --contact-lead-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.1), transparent 32%),
+    rgba(42, 48, 56, 0.62);
+  --case-image-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.1), transparent 30%),
+    rgba(42, 48, 56, 0.62);
+  --metric-item-bg: rgba(31, 37, 43, 0.74);
+  --resume-shell-bg:
+    radial-gradient(circle at top left, rgba(139, 183, 188, 0.08), transparent 22%),
+    radial-gradient(circle at 85% 16%, rgba(214, 169, 141, 0.06), transparent 24%),
+    rgba(42, 48, 56, 0.62);
+  --portrait-frame-bg: linear-gradient(180deg, rgba(42, 48, 56, 0.9), rgba(31, 37, 43, 0.85));
+  
+  /* Ambient Hero - Dark */
+  --ambient-frame-bg:
+    radial-gradient(circle at 25% 20%, rgba(139, 183, 188, 0.18), transparent 32%),
+    radial-gradient(circle at 74% 26%, rgba(214, 169, 141, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(42, 48, 56, 0.9), rgba(31, 37, 43, 0.85));
+  --ambient-inset-glow: rgba(255, 255, 255, 0.06);
+  --ambient-grid-color: rgba(255, 255, 255, 0.04);
+  --ambient-orb-core:
+    radial-gradient(circle at 30% 30%, rgba(168, 206, 210, 0.28), rgba(168, 206, 210, 0.05) 36%),
+    conic-gradient(from 110deg, rgba(139, 183, 188, 0.65), rgba(214, 169, 141, 0.55), rgba(139, 183, 188, 0.65));
+  --ambient-orb-secondary:
+    radial-gradient(circle at 50% 40%, rgba(229, 196, 174, 0.2), transparent 36%),
+    conic-gradient(from 220deg, rgba(214, 169, 141, 0.45), rgba(139, 183, 188, 0.4), rgba(214, 169, 141, 0.45));
+  --ambient-orb-highlight:
+    radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03) 55%, transparent 70%);
+  --ambient-core-shadow:
+    0 0 80px rgba(139, 183, 188, 0.12),
+    0 0 120px rgba(214, 169, 141, 0.1);
+  --ambient-ring-color: rgba(255, 255, 255, 0.08);
+  --ambient-haze-color: rgba(17, 22, 27, 0.85);
+  --ambient-shimmer-color: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
 }
 
 /* ============================================

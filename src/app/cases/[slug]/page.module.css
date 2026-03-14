@@ -137,23 +137,6 @@
   transition: border-color var(--transition-slow);
 }
 
-:root,
-[data-theme="light"] {
-  --case-image-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.22), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.22), transparent 30%),
-    rgba(255, 255, 255, 0.62);
-  --metric-item-bg: rgba(246, 240, 232, 0.74);
-}
-
-[data-theme="dark"] {
-  --case-image-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.12), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(214, 169, 141, 0.1), transparent 30%),
-    rgba(42, 48, 56, 0.62);
-  --metric-item-bg: rgba(31, 37, 43, 0.74);
-}
-
 .imageFrame:hover {
   border-color: var(--border-glow);
 }

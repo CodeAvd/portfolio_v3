@@ -105,23 +105,6 @@
   transition: border-color var(--transition-slow);
 }
 
-:root,
-[data-theme="light"] {
-  --resume-shell-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.1), transparent 22%),
-    radial-gradient(circle at 85% 16%, rgba(214, 169, 141, 0.12), transparent 24%),
-    rgba(255, 255, 255, 0.62);
-  --portrait-frame-bg: linear-gradient(180deg, rgba(249, 244, 237, 0.9), rgba(237, 230, 220, 0.72));
-}
-
-[data-theme="dark"] {
-  --resume-shell-bg:
-    radial-gradient(circle at top left, rgba(139, 183, 188, 0.08), transparent 22%),
-    radial-gradient(circle at 85% 16%, rgba(214, 169, 141, 0.06), transparent 24%),
-    rgba(42, 48, 56, 0.62);
-  --portrait-frame-bg: linear-gradient(180deg, rgba(42, 48, 56, 0.9), rgba(31, 37, 43, 0.85));
-}
-
 .resumeShell:hover {
   border-color: var(--border-glow);
 }
