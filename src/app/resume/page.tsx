@@ -35,27 +35,37 @@ export default function ResumePage() {
 
   return (
     <main id="main-content" tabIndex={-1} className={styles.page} data-resume-page>
-      {/* Utility bar with theme toggle */}
-      <Reveal variant="fade" duration={0.6}>
+      <Reveal variant="fade" duration={0.45}>
         <div className={styles.utilityBar}>
           <Link className={styles.utilityLink} href="/">
             Back to portfolio
           </Link>
+
           <div className={styles.utilityActions}>
-            <ThemeToggle />
             <p className={styles.utilityNote}>Print or save as PDF from browser.</p>
+            <ThemeToggle />
           </div>
         </div>
       </Reveal>
 
-      <Reveal variant="fade-up" delay={0.1} duration={0.8}>
+      <Reveal variant="fade-up" delay={0.08} duration={0.7}>
         <article className={styles.resumeShell}>
           <header className={styles.header}>
             <div className={styles.headerCopy}>
-              <p className={styles.kicker}>Resume</p>
+              <p className={styles.kicker}>Premium hiring dossier</p>
               <h1 className={styles.name}>{meta.name}</h1>
               <p className={styles.headline}>{resume.headline}</p>
               <p className={styles.summary}>{resume.summary}</p>
+
+              <div className={styles.actionRow}>
+                <a className={styles.primaryAction} href={`mailto:${meta.email}`}>
+                  Email
+                </a>
+                <Link className={styles.secondaryAction} href="/#cases">
+                  Open cases
+                </Link>
+              </div>
+
               <p className={styles.contactNote}>{resume.contactNote}</p>
 
               <ul className={styles.linkList} aria-label="Resume links">
@@ -83,59 +93,72 @@ export default function ResumePage() {
               </ul>
             </div>
 
-            <div className={styles.portraitFrame}>
-              <Image
-                src={profileMedia.src}
-                alt={profileMedia.alt}
-                width={profileMedia.width}
-                height={profileMedia.height}
-                priority
-                sizes="(max-width: 720px) 48vw, 14rem"
-                className={styles.portrait}
-              />
-            </div>
+            <aside className={styles.headerRail}>
+              <div className={styles.portraitFrame}>
+                <Image
+                  src={profileMedia.src}
+                  alt={profileMedia.alt}
+                  width={profileMedia.width}
+                  height={profileMedia.height}
+                  priority
+                  sizes="(max-width: 900px) 40vw, 16rem"
+                  className={styles.portrait}
+                />
+              </div>
+
+              <div className={styles.snapshotCard}>
+                <p className={styles.sectionEyebrow}>{resume.snapshot.eyebrow}</p>
+                <h2 className={styles.snapshotTitle}>{resume.snapshot.title}</h2>
+                <p className={styles.snapshotIntro}>{resume.snapshot.intro}</p>
+
+                <dl className={styles.snapshotList}>
+                  {resume.snapshot.items.map((item) => (
+                    <div key={item.label} className={styles.snapshotItem}>
+                      <dt>{item.label}</dt>
+                      <dd>{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </aside>
           </header>
 
-          <section className={styles.section} aria-labelledby="skills-title">
-            <h2 className={styles.sectionTitle} id="skills-title">
-              Skills
-            </h2>
+          <section className={styles.section} aria-labelledby="highlights-title">
+            <div className={styles.sectionHeading}>
+              <p className={styles.sectionEyebrow}>Evidence highlights</p>
+              <h2 className={styles.sectionTitle} id="highlights-title">
+                The fastest proof of fit.
+              </h2>
+            </div>
 
-            <div className={styles.sectionStack}>
-              {resume.skillGroups.map((group) => (
-                <div key={group.title} className={styles.skillGroup}>
-                  <div className={styles.groupHeader}>
-                    <h3 className={styles.itemTitle}>{group.title}</h3>
-                    <span className={styles.levelTag}>
-                      {proofLevelLabelShort(group.level)}
-                    </span>
-                  </div>
-
-                  <p className={styles.inlineList}>{group.items.join(" • ")}</p>
-
-                  {group.note ? (
-                    <p className={styles.supportingNote}>{group.note}</p>
-                  ) : null}
-                </div>
+            <div className={styles.highlightsGrid}>
+              {resume.highlights.map((highlight) => (
+                <article key={highlight.title} className={styles.highlightCard}>
+                  <h3>{highlight.title}</h3>
+                  <p>{highlight.detail}</p>
+                  <strong>{highlight.evidence}</strong>
+                </article>
               ))}
             </div>
           </section>
 
           <section className={styles.section} aria-labelledby="experience-title">
-            <h2 className={styles.sectionTitle} id="experience-title">
-              Experience
-            </h2>
+            <div className={styles.sectionHeading}>
+              <p className={styles.sectionEyebrow}>Experience</p>
+              <h2 className={styles.sectionTitle} id="experience-title">
+                Evidence-based experience.
+              </h2>
+            </div>
 
-            <div className={styles.sectionStack}>
+            <div className={styles.timeline}>
               {resume.experience.map((item) => (
-                <article key={`${item.company}-${item.period}`} className={styles.experienceItem}>
-                  <div className={styles.itemHeader}>
+                <article key={`${item.company}-${item.period}`} className={styles.timelineItem}>
+                  <div className={styles.timelineHeader}>
                     <div>
-                      <h3 className={styles.itemTitle}>{item.title}</h3>
-                      <p className={styles.itemMeta}>{item.company}</p>
+                      <h3>{item.title}</h3>
+                      <p>{item.company}</p>
                     </div>
-
-                    <p className={styles.period}>{item.period}</p>
+                    <span>{item.period}</span>
                   </div>
 
                   <ul className={styles.bulletList}>
@@ -148,58 +171,86 @@ export default function ResumePage() {
             </div>
           </section>
 
-          <section className={styles.section} aria-labelledby="projects-title">
-            <h2 className={styles.sectionTitle} id="projects-title">
-              Selected projects
-            </h2>
+          <section className={styles.section} aria-labelledby="proof-title">
+            <div className={styles.sectionHeading}>
+              <p className={styles.sectionEyebrow}>Selected proof</p>
+              <h2 className={styles.sectionTitle} id="proof-title">
+                Projects and systems that support the hiring read.
+              </h2>
+            </div>
 
-            <div className={styles.sectionStack}>
-              {resume.selectedProjects.map((project) => (
-                <article key={project.title} className={styles.projectItem}>
-                  <div className={styles.itemHeader}>
-                    <h3 className={styles.itemTitle}>{project.title}</h3>
+            <div className={styles.proofGrid}>
+              <div className={styles.proofCard}>
+                <p className={styles.cardEyebrow}>Selected projects</p>
+                <div className={styles.projectStack}>
+                  {resume.selectedProjects.map((project) => (
+                    <article key={project.title} className={styles.projectItem}>
+                      <div className={styles.projectHeader}>
+                        <h3>{project.title}</h3>
+                        {project.href.startsWith("/") ? (
+                          <Link className={styles.projectLink} href={project.href}>
+                            Open
+                          </Link>
+                        ) : (
+                          <a
+                            className={styles.projectLink}
+                            href={project.href}
+                            {...getExternalLinkProps(project.href)}
+                          >
+                            Open
+                          </a>
+                        )}
+                      </div>
+                      <p>{project.note}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
 
-                    {project.href.startsWith("/") ? (
-                      <Link className={styles.projectLink} href={project.href}>
-                        Open
-                      </Link>
-                    ) : (
-                      <a
-                        className={styles.projectLink}
-                        href={project.href}
-                        {...getExternalLinkProps(project.href)}
-                      >
-                        Open
-                      </a>
-                    )}
-                  </div>
-
-                  <p className={styles.projectNote}>{project.note}</p>
-                </article>
-              ))}
+              <div className={styles.proofCard}>
+                <p className={styles.cardEyebrow}>Skills</p>
+                <div className={styles.skillStack}>
+                  {resume.skillGroups.map((group) => (
+                    <article key={group.title} className={styles.skillGroup}>
+                      <div className={styles.skillHeader}>
+                        <h3>{group.title}</h3>
+                        <span>{proofLevelLabelShort(group.level)}</span>
+                      </div>
+                      <p>{group.items.join(" • ")}</p>
+                      {group.note ? <small>{group.note}</small> : null}
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 
           <section className={styles.section} aria-labelledby="education-title">
-            <h2 className={styles.sectionTitle} id="education-title">
-              Education
-            </h2>
-
-            <div className={styles.sectionStack}>
-              {resume.education.map((item) => (
-                <article key={item.title} className={styles.educationItem}>
-                  <h3 className={styles.itemTitle}>{item.title}</h3>
-                  <p className={styles.itemMeta}>{item.detail}</p>
-                </article>
-              ))}
+            <div className={styles.sectionHeading}>
+              <p className={styles.sectionEyebrow}>Background</p>
+              <h2 className={styles.sectionTitle} id="education-title">
+                Education and languages.
+              </h2>
             </div>
-          </section>
 
-          <section className={styles.section} aria-labelledby="languages-title">
-            <h2 className={styles.sectionTitle} id="languages-title">
-              Languages
-            </h2>
-            <p className={styles.inlineList}>{resume.languages}</p>
+            <div className={styles.metaGrid}>
+              <div className={styles.metaCard}>
+                <p className={styles.cardEyebrow}>Education</p>
+                <div className={styles.educationStack}>
+                  {resume.education.map((item) => (
+                    <article key={item.title} className={styles.educationItem}>
+                      <h3>{item.title}</h3>
+                      <p>{item.detail}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.metaCard}>
+                <p className={styles.cardEyebrow}>Languages</p>
+                <p className={styles.languages}>{resume.languages}</p>
+              </div>
+            </div>
           </section>
         </article>
       </Reveal>

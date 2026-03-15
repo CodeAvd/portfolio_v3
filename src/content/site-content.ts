@@ -1,177 +1,18 @@
-export type ProofLevel = "core" | "shipped" | "working-knowledge";
-
-export type SiteMeta = {
-  name: string;
-  role: string;
-  location: string;
-  email: string;
-  phone: string;
-  githubUrl: string;
-  portfolioRepoUrl: string;
-  legacyPortfolioUrl: string;
-  resumeUrl: string;
-};
-
-export type ProfileMedia = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
-
-export type NavItem = {
-  label: string;
-  href: string;
-};
-
-export type ActionLink = {
-  label: string;
-  href: string;
-  variant: "primary" | "secondary";
-};
-
-export type SignalPill = {
-  value: string;
-  label: string;
-};
-
-export type ProofMetric = {
-  label: string;
-  value: string;
-  note: string;
-};
-
-export type RoleFitItem = {
-  eyebrow: string;
-  title: string;
-  description: string;
-};
-
-export type ContactLink = {
-  label: string;
-  value: string;
-  href?: string;
-};
-
-export type SkillGroup = {
-  title: string;
-  level: ProofLevel;
-  items: string[];
-  note?: string;
-};
-
-export type ProjectProof = {
-  title: string;
-  eyebrow: string;
-  summary: string;
-  impact: string;
-  href: string;
-  linkLabel: string;
-  stack: string[];
-  level: ProofLevel;
-};
-
-export type CaseStudyMetric = {
-  label: string;
-  value: string;
-};
-
-export type ArtifactLink = {
-  label: string;
-  href: string;
-};
-
-export type CaseStudySection = {
-  title: string;
-  items: string[];
-};
-
-export type CaseStudy = {
-  slug: string;
-  number: string;
-  eyebrow: string;
-  title: string;
-  summary: string;
-  outcome: string;
-  previewImage: string;
-  tags: string[];
-  metrics: CaseStudyMetric[];
-  sections: CaseStudySection[];
-  artifacts: ArtifactLink[];
-};
-
-export type ResumeExperience = {
-  company: string;
-  title: string;
-  period: string;
-  bullets: string[];
-};
-
-export type ResumeProject = {
-  title: string;
-  note: string;
-  href: string;
-};
-
-export type ResumeEducation = {
-  title: string;
-  detail: string;
-};
-
-export type ResumeContent = {
-  headline: string;
-  summary: string;
-  contactNote: string;
-  languages: string;
-  contactLinks: ContactLink[];
-  skillGroups: SkillGroup[];
-  experience: ResumeExperience[];
-  selectedProjects: ResumeProject[];
-  education: ResumeEducation[];
-};
-
-export type SiteContent = {
-  meta: SiteMeta;
-  profileMedia: ProfileMedia;
-  description: string;
-  nav: NavItem[];
-  hero: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    positioning: string;
-    ctas: ActionLink[];
-    availability: string;
-    note: string;
-    signals: SignalPill[];
-  };
-  cases: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-  };
-  builds: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    items: ProjectProof[];
-  };
-  strengths: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    items: RoleFitItem[];
-  };
-  contact: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    links: ContactLink[];
-  };
-  footer: string;
-  resume: ResumeContent;
-  caseStudies: CaseStudy[];
-};
+import type {
+  CaseStudy,
+  ContactSection,
+  HomeContent,
+  ProjectProof,
+  PromptPack,
+  ResumeContent,
+  ResumeExperience,
+  ResumeHighlight,
+  ResumeProject,
+  RoleFitSection,
+  SiteContent,
+  SkillGroup,
+  SystemsSection,
+} from "@/content/types";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -180,9 +21,11 @@ const caseStudies: CaseStudy[] = [
     eyebrow: "Support systems design",
     title: "Darkest AFK compensation workflow",
     summary:
-      "Built a repeatable operator-facing catalog for faster recovery packages and cleaner internal handling.",
+      "Built a bilingual operator tool that turned repetitive compensation handling into a calmer, repeatable workflow.",
     outcome:
-      "A support-heavy recovery flow became faster, more consistent, and easier to repeat without manual lookup noise.",
+      "Recovery work became faster to prepare, easier to repeat, and cleaner to hand off without lookup noise.",
+    recruiterRead:
+      "Best read as proof of operator tooling, support-process design, and the ability to package a noisy internal task into a stable artifact.",
     previewImage: "/images/cases/project-darkest-afk.svg",
     tags: [
       "112+ indexed items",
@@ -190,56 +33,56 @@ const caseStudies: CaseStudy[] = [
       "Standardized package prep",
     ],
     metrics: [
-      { label: "Indexed items", value: "112+" },
-      { label: "Operator UX", value: "Bilingual" },
-      { label: "Preparation", value: "Standardized" },
+      {
+        label: "Indexed items",
+        value: "112+",
+        note: "Single searchable catalog for repetitive recovery work.",
+      },
+      {
+        label: "Operator UX",
+        value: "Bilingual",
+        note: "Made the tool legible for cross-language internal use.",
+      },
+      {
+        label: "Preparation",
+        value: "Standardized",
+        note: "Reduced variation in how compensation packages were assembled.",
+      },
     ],
     sections: [
       {
-        title: "Challenge",
+        title: "Situation",
         items: [
           "Support and admin workflows needed a faster, safer way to prepare compensation packages without repeated manual lookup and formatting.",
-          "Manual item search and package prep created repetitive friction and made consistency harder to maintain.",
+          "The same recovery motions were happening again and again, but the workflow had no dedicated operator artifact.",
         ],
       },
       {
-        title: "Inputs",
+        title: "Intervention",
         items: [
-          "Support workflow pain points.",
-          "Existing item metadata.",
-          "Internal package assembly requirements.",
+          "Built a static bilingual tool with search, filtering, clearer item metadata, and standardized package-prep logic.",
+          "Designed the experience around repetitive internal support work rather than presentation-only browsing.",
         ],
       },
       {
-        title: "Method",
+        title: "Proof",
         items: [
-          "Built a static operator tool with search, filtering, bilingual labels, and standardized package-prep logic.",
-          "Optimized the flow for repetitive internal support work rather than presentation-only browsing.",
-          "Created a cleaner path from item lookup to repeatable output.",
+          "112+ indexed items were packaged into one operator-facing catalog.",
+          "The workflow became easier to repeat consistently without relying on memory or scattered references.",
         ],
       },
       {
-        title: "What surfaced",
+        title: "Result",
         items: [
-          "Operator tooling matters when the same recovery flow happens repeatedly.",
-          "Consistency is as important as speed in compensation work.",
-          "Workflow design can remove support friction without changing team structure.",
+          "Recovery handling became cleaner, calmer, and more legible to the people doing the work.",
+          "The project became public-safe proof of support tooling and process thinking.",
         ],
       },
       {
-        title: "Impact",
-        items: [
-          "112+ indexed items in one operator-facing tool.",
-          "Clearer and more repeatable package preparation.",
-          "Public proof of support tooling and process thinking.",
-        ],
-      },
-      {
-        title: "Next move",
+        title: "Next step",
         items: [
           "Measure package-prep time before and after tool adoption.",
-          "Track formatting mistakes and repeat corrections.",
-          "Identify the next repetitive support workflow worth standardizing.",
+          "Track formatting mistakes and repeat corrections to quantify consistency gains.",
         ],
       },
     ],
@@ -260,62 +103,64 @@ const caseStudies: CaseStudy[] = [
     eyebrow: "Feedback intelligence",
     title: "Dig Dig Die escalation-ready feedback view",
     summary:
-      "Structured noisy community feedback into a shared view for support, product, and execution conversations.",
+      "Structured fragmented community feedback into an escalation artifact that support, product, and execution teams could actually use.",
     outcome:
-      "Raw complaints became a concise escalation artifact with priorities, repeat themes, and less duplication across teams.",
+      "Raw complaints became a concise, prioritized view with repeat themes and less duplication across conversations.",
+    recruiterRead:
+      "Best read as support-to-product packaging: noisy user sentiment translated into a shared artifact with clearer next actions.",
     previewImage: "/images/cases/project-dig-dig-die.svg",
     tags: ["23 structured items", "6 critical issues", "3 repeat themes"],
     metrics: [
-      { label: "Structured items", value: "23" },
-      { label: "Critical issues", value: "6" },
-      { label: "Repeat themes", value: "3" },
+      {
+        label: "Structured items",
+        value: "23",
+        note: "Fragmented player reports turned into one readable issue map.",
+      },
+      {
+        label: "Critical issues",
+        value: "6",
+        note: "Clear top-priority items surfaced from public noise.",
+      },
+      {
+        label: "Repeat themes",
+        value: "3",
+        note: "Helped collapse duplicates into decision-ready clusters.",
+      },
     ],
     sections: [
       {
-        title: "Challenge",
+        title: "Situation",
         items: [
           "Steam, Discord, and community reports contained recurring bug and UX signals, but the feedback was fragmented and duplicated across channels.",
-          "Support and product conversations were slower because the same issues were appearing in multiple formats without a shared structure.",
+          "Support and product conversations were slower because the same complaints kept arriving in different formats.",
         ],
       },
       {
-        title: "Inputs",
+        title: "Intervention",
         items: [
-          "Steam feedback snapshots.",
-          "Discord and community reports.",
-          "Creator and player commentary.",
+          "Clustered raw feedback into repeat issue groups and simple priority framing.",
+          "Packed the result into an escalation view that could move from support to product without re-reading the same noise.",
         ],
       },
       {
-        title: "Method",
-        items: [
-          "Clustered raw feedback into repeat issue groups and feedback themes.",
-          "Added simple priority framing to move from noise to next actions.",
-          "Packed the result into a support-to-product escalation view.",
-        ],
-      },
-      {
-        title: "What surfaced",
+        title: "Proof",
         items: [
           "23 structured items made the volume of player pain legible.",
-          "6 critical bug or UX issues stood out as near-term risk.",
-          "3 repeat feedback themes showed where frustration was concentrating.",
+          "6 critical issues and 3 repeat themes gave the team a shared reading instead of fragmented anecdotes.",
         ],
       },
       {
-        title: "Impact",
+        title: "Result",
         items: [
-          "Faster path from public user complaints to structured escalation.",
-          "Less duplication between support, product, and dev conversations.",
-          "Clear proof of customer feedback prioritization inside a support-led narrative.",
+          "Faster path from public complaints to structured escalation.",
+          "Less duplication between support, product, and execution conversations.",
         ],
       },
       {
-        title: "Next move",
+        title: "Next step",
         items: [
-          "Track whether structured escalations shorten prioritization conversations.",
-          "Measure how often duplicate complaints collapse into a single issue view.",
-          "Repeat the same workflow for another noisy signal set.",
+          "Track whether structured escalations shorten prioritization discussions.",
+          "Repeat the same workflow for another noisy signal set to validate the packaging model.",
         ],
       },
     ],
@@ -336,66 +181,68 @@ const caseStudies: CaseStudy[] = [
     eyebrow: "Retention and friction analysis",
     title: "Vacation Cafe player-friction analysis",
     summary:
-      "Turned fragmented player friction signals into retention-oriented hypotheses a product team could review quickly.",
+      "Turned scattered player-friction signals into retention-oriented hypotheses a product team could review quickly.",
     outcome:
       "Community pain points became named patterns, clearer language, and short-loop experiments instead of scattered anecdotes.",
+    recruiterRead:
+      "Best read as hypothesis framing and signal interpretation: public-facing pain converted into compact decision support.",
     previewImage: "/images/cases/project-vacation-cafe.svg",
     tags: [
-      "6-8h pain point",
+      "6-8h friction signal",
       "Level 4-5 complexity spike",
       "Short-loop hypotheses",
     ],
     metrics: [
-      { label: "Friction signal", value: "6-8h" },
-      { label: "Complexity spike", value: "Level 4-5" },
-      { label: "Experiments", value: "Short-loop" },
+      {
+        label: "Friction signal",
+        value: "6-8h",
+        note: "A repeat pain point appeared later in the player journey.",
+      },
+      {
+        label: "Complexity spike",
+        value: "Level 4-5",
+        note: "A clear shift in difficulty changed the feel of the loop.",
+      },
+      {
+        label: "Experiments",
+        value: "Short-loop",
+        note: "The output was framed for fast review, not long theory documents.",
+      },
     ],
     sections: [
       {
-        title: "Challenge",
+        title: "Situation",
         items: [
-          "Community and market feedback described points where the cozy loop started to feel repetitive or mechanically heavy, but the signals were not yet organized into actions.",
-          "The underlying player pain was real, but it was scattered across channels and not translated into testable next steps.",
+          "Community and market feedback described points where the cozy loop started to feel repetitive or mechanically heavy.",
+          "The pain was real, but it was scattered across channels and not yet translated into testable next steps.",
         ],
       },
       {
-        title: "Inputs",
-        items: [
-          "Steam review and feedback snapshots.",
-          "Discord discussion samples.",
-          "Genre and benchmark observations.",
-        ],
-      },
-      {
-        title: "Method",
+        title: "Intervention",
         items: [
           "Grouped repeat complaints into friction patterns instead of isolated anecdotes.",
-          "Mapped the patterns to simple retention and session-quality questions.",
-          "Proposed short-loop hypotheses a team could review quickly.",
+          "Mapped those patterns to retention and session-quality questions a product team could review quickly.",
         ],
       },
       {
-        title: "What surfaced",
+        title: "Proof",
         items: [
           "A repeat friction signal appeared around 6-8 hours for part of the player base.",
-          "Complexity increased near Level 4-5 and changed the feel of the loop.",
-          "This work is strongest as decision support, not as a full product-title pivot.",
+          "Complexity increased near Level 4-5 and changed the feel of the loop for some players.",
         ],
       },
       {
-        title: "Impact",
+        title: "Result",
         items: [
-          "Clear public example of player-friction analysis and hypothesis framing.",
-          "Better language for turning user pain into support-to-product escalation.",
-          "Useful differentiation without breaking the support narrative.",
+          "Clearer public example of player-friction analysis and hypothesis framing.",
+          "Better language for turning user pain into support-to-product escalation material.",
         ],
       },
       {
-        title: "Next move",
+        title: "Next step",
         items: [
           "Test whether the same framework helps in a SaaS onboarding or help-center context.",
-          "Shorten the analysis into a one-page operating memo.",
-          "Track whether teams act faster when friction patterns are named clearly.",
+          "Condense the analysis into an even tighter operating memo format.",
         ],
       },
     ],
@@ -412,7 +259,7 @@ const caseStudies: CaseStudy[] = [
   },
 ];
 
-const technicalProofs: ProjectProof[] = [
+const systemsProofItems: ProjectProof[] = [
   {
     title: "Jarvis v1",
     eyebrow: "AI workflow system",
@@ -443,6 +290,24 @@ const technicalProofs: ProjectProof[] = [
     linkLabel: "Open GitHub repo",
     stack: ["Next.js", "React", "TypeScript", "Dashboard UI", "QA framing"],
     level: "shipped",
+  },
+];
+
+const resumeHighlights: ResumeHighlight[] = [
+  {
+    title: "Reduced repetitive support load",
+    detail: "Built AI-assisted workflows and tighter routing for trust-sensitive support work.",
+    evidence: "45% lower repetitive tier-1 volume in a prior high-volume support environment.",
+  },
+  {
+    title: "Improved response speed without chaos",
+    detail: "Used routing, issue tagging, and escalation triage to shorten the path to first answer.",
+    evidence: "35% faster first response time.",
+  },
+  {
+    title: "Turned manual ops into systems",
+    detail: "Built internal compensation handling and operator artifacts for repeat recovery flows.",
+    evidence: "70% lower manual operational load on a failed-transaction compensation workflow.",
   },
 ];
 
@@ -477,7 +342,7 @@ const resumeSkillGroups: SkillGroup[] = [
       "LLM orchestration",
     ],
     note:
-      "Technical stack claims are grounded in shipped side-project work and automation-heavy support systems, not inflated senior-engineer posturing.",
+      "Technical claims are grounded in shipped side-project work and automation-heavy support systems, not inflated senior-engineer signaling.",
   },
   {
     title: "Working knowledge",
@@ -553,9 +418,273 @@ const resumeProjects: ResumeProject[] = [
   },
 ];
 
+const homeContent: HomeContent = {
+  hero: {
+    eyebrow: "Editorial portfolio / recruiter-ready dossier",
+    title: "Calm systems for noisy support work.",
+    description:
+      "I turn repeated support pain into cleaner workflows, escalation artifacts, and public-safe proof that a recruiter or hiring manager can scan fast.",
+    positioning:
+      "Support operations, technical support, escalations, and AI-enabled workflow design.",
+    ctas: [
+      { label: "Open resume", href: "/resume", variant: "primary" },
+      { label: "Email / Contact", href: "#contact", variant: "secondary" },
+    ],
+    availability:
+      "Remote-first and interview-ready for support ops, technical support, escalation-heavy support, and AI-adjacent operations roles.",
+    note:
+      "The website is built as both a showcase and a trust document: strong visual direction on the surface, disciplined proof underneath.",
+    proofLine:
+      "45% lower repetitive tier-1 volume / 35% faster first response / 70% less manual ops load",
+    scene: {
+      label: "Scene 01",
+      title: "The profile frame",
+      caption:
+        "A premium first read that keeps the hiring signal visible instead of hiding it behind decoration.",
+      poster: "/images/profile/grigorii-portrait.png",
+      posterAlt: "Portrait of Grigorii used as the opening still for the portfolio.",
+      sources: [],
+      duration: 10,
+      pinRange: 2.2,
+      mobileBehavior: "poster",
+      reducedMotionFallback: "poster",
+    },
+  },
+  trustStrip: {
+    eyebrow: "Recruiter snapshot",
+    title: "The short hiring read.",
+    intro:
+      "If you are hiring for support systems, escalations, or AI-enabled internal workflows, this is the fast scan.",
+    metrics: [
+      {
+        value: "45%",
+        label: "lower repetitive tier-1 volume",
+        note: "Achieved through AI-assisted workflows and tighter routing.",
+      },
+      {
+        value: "35%",
+        label: "faster first response time",
+        note: "Driven by clearer issue tagging and escalation design.",
+      },
+      {
+        value: "70%",
+        label: "less manual operational load",
+        note: "Measured on a compensation workflow that previously required repetitive handling.",
+      },
+      {
+        value: "112+",
+        label: "indexed support items",
+        note: "Packaged into a bilingual operator tool for compensation handling.",
+      },
+    ],
+    snapshot: {
+      eyebrow: "Hiring view",
+      title: "What this profile is strongest at",
+      intro:
+        "Support-first credibility with wider systems leverage. The builder read is real, but it stays secondary to operator proof.",
+      items: [
+        {
+          label: "Primary fit",
+          value: "Support ops, technical support, incident-heavy support, escalation pipelines",
+        },
+        {
+          label: "Operating style",
+          value: "Calm, systems-minded, proof-led, and practical under messy user-facing pressure",
+        },
+        {
+          label: "Differentiator",
+          value: "Can package noisy support reality into artifacts product, QA, and ops can actually act on",
+        },
+        {
+          label: "Location",
+          value: "Russia / Remote",
+        },
+      ],
+      note:
+        "Public-safe examples only. Internal workflow detail is abstracted, but the logic, metrics, and evidence remain visible.",
+    },
+  },
+  flagship: {
+    eyebrow: "Flagship case chapter",
+    title: "One example where support work became product-grade proof.",
+    intro:
+      "Darkest AFK is the clearest demonstration of operator tooling, workflow packaging, and evidence-led case narration.",
+    caseSlug: "darkest-afk",
+    summary:
+      "A compensation-heavy support task was reframed as a repeatable artifact: searchable, bilingual, and easier to execute without internal noise.",
+    bullets: [
+      "Shows operator empathy without becoming soft or vague.",
+      "Proves systems thinking through a concrete internal workflow.",
+      "Reads well for support leaders, product-minded operators, and hiring managers scanning quickly.",
+    ],
+    scene: {
+      label: "Scene 02",
+      title: "Flagship chapter",
+      caption:
+        "A film-still treatment for the strongest case, designed to feel premium without hiding the proof.",
+      poster: "/images/cases/project-darkest-afk.svg",
+      posterAlt: "Illustrated poster frame for the Darkest AFK case study.",
+      sources: [],
+      duration: 12,
+      pinRange: 1.9,
+      mobileBehavior: "poster",
+      reducedMotionFallback: "poster",
+    },
+    ctas: [
+      {
+        label: "Open flagship case",
+        href: "/cases/darkest-afk",
+        note: "Read the full narrative with proof box, artifacts, and next-step framing.",
+      },
+      {
+        label: "Open resume",
+        href: "/resume",
+        note: "Jump directly into the hiring dossier if you already understand the visual pitch.",
+      },
+    ],
+  },
+  caseGrid: {
+    eyebrow: "Proof appendix",
+    title: "Three public-safe cases, each packaged for fast reading.",
+    intro:
+      "Each case keeps a strict narrative format: situation, intervention, proof, result, and next step.",
+  },
+  resumePreview: {
+    eyebrow: "Resume preview",
+    title: "What the dossier says when the visuals stop.",
+    intro:
+      "The portfolio carries the visual hook. The resume page closes the conversion with direct hiring language, evidence, and printable structure.",
+    highlights: resumeHighlights,
+  },
+  finalCta: {
+    eyebrow: "Final CTA",
+    title: "If you need support credibility with stronger systems leverage, the next step is simple.",
+    intro:
+      "Open the resume for the strict hiring read, or go straight to contact if the fit is already clear.",
+    ctas: [
+      { label: "Open resume", href: "/resume", variant: "primary" },
+      { label: "Contact", href: "#contact", variant: "secondary" },
+    ],
+    note:
+      "The site is intentionally two-speed: memorable first impression, disciplined proof on the second read.",
+  },
+};
+
+const systemsSection: SystemsSection = {
+  eyebrow: "Systems proof",
+  title: "Builder evidence that supports the operator claim.",
+  intro:
+    "These projects are not there to cosplay as a software engineer portfolio. They prove the stack behind the workflow claims.",
+  items: systemsProofItems,
+};
+
+const roleFitSection: RoleFitSection = {
+  eyebrow: "Recruiter fit",
+  title: "Where this profile lands best.",
+  intro:
+    "The strongest read is still support-first, but with better leverage in automation, internal tooling, and signal packaging.",
+  items: [
+    {
+      eyebrow: "Support systems",
+      title: "Workflow automation and operator tooling",
+      description:
+        "Repeatable recovery flows, internal tools, and lower-friction processes where consistency matters as much as speed.",
+    },
+    {
+      eyebrow: "Escalation quality",
+      title: "Incident handling and issue reproduction",
+      description:
+        "Trust-sensitive cases, clearer issue reproduction, and cleaner handoffs between support, QA, product, and engineering.",
+    },
+    {
+      eyebrow: "Signal packaging",
+      title: "Feedback intelligence and AI leverage",
+      description:
+        "LLM-assisted workflows, structured feedback clustering, and artifacts that help teams act faster instead of rereading the same noise.",
+    },
+  ],
+};
+
+const contactSection: ContactSection = {
+  eyebrow: "Contact",
+  title: "Open to remote-first roles where support work has operational weight.",
+  intro:
+    "Especially strong fit for technical support, support ops, escalation-heavy environments, trust-sensitive workflows, and AI-enabled internal tooling.",
+  links: [
+    {
+      label: "Email",
+      value: "grigorii584@gmail.com",
+      href: "mailto:grigorii584@gmail.com",
+    },
+    {
+      label: "GitHub",
+      value: "github.com/CodeAvd",
+      href: "https://github.com/CodeAvd",
+    },
+    {
+      label: "Resume",
+      value: "Public resume",
+      href: "/resume",
+    },
+    {
+      label: "Portfolio source",
+      value: "github.com/CodeAvd/portfolio_v2",
+      href: "https://github.com/CodeAvd/portfolio_v2",
+    },
+    {
+      label: "Location",
+      value: "Russia | Remote",
+    },
+  ],
+};
+
+const promptPack: PromptPack = {
+  documents: [
+    {
+      title: "Concept brief",
+      purpose: "Defines the editorial cinema direction and the dual role of the site as showcase plus trust document.",
+      path: "/docs/prompts/concept-brief.md",
+    },
+    {
+      title: "Home generation prompt",
+      purpose: "Generates or critiques the home page against showcase and recruiter-conversion goals.",
+      path: "/docs/prompts/home-generation.md",
+    },
+    {
+      title: "Resume generation prompt",
+      purpose: "Generates or critiques the resume page as a premium hiring dossier.",
+      path: "/docs/prompts/resume-generation.md",
+    },
+    {
+      title: "Critique rubric",
+      purpose: "Scores visuals, clarity, proof, narrative quality, and CTA persuasiveness.",
+      path: "/docs/prompts/critique-rubric.md",
+    },
+    {
+      title: "Revision prompt",
+      purpose: "Turns critique output into a concrete next iteration request.",
+      path: "/docs/prompts/revision-prompt.md",
+    },
+  ],
+  critiqueWeights: {
+    visualDistinction: 25,
+    profileClarity: 25,
+    proofOfCompetence: 20,
+    caseNarrative: 15,
+    ctaPersuasiveness: 15,
+  },
+  reviewEvidenceChecklist: [
+    "State what a recruiter sees above the fold in concrete terms, not vague impressions.",
+    "List which proof signals are visible before the second scroll.",
+    "Name the dominant CTA and explain whether it is obvious without hunting.",
+    "Call out what improves trust versus what only improves aesthetics.",
+    "Point to any motion or visuals that interfere with scanning or clarity.",
+  ],
+};
+
 const resumeContent: ResumeContent = {
   headline:
-    "Support Operations / Technical Support Specialist with AI automation and workflow systems leverage.",
+    "Support systems operator with technical support, escalation, and AI workflow leverage.",
   summary:
     "Support operations and technical support specialist with 3.5+ years across Web3, FinTech, gamedev, and customer-facing operations. Reduced repetitive tier-1 volume by 45%, improved first response time by 35%, and cut manual operational load by 70% through automation, routing, and internal tooling. Strong in escalation management, incident communication, knowledge base improvement, feedback intelligence, and turning repeated support pain into calmer systems.",
   contactNote:
@@ -569,7 +698,7 @@ const resumeContent: ResumeContent = {
     },
     {
       label: "Portfolio",
-      value: "portfolio-v2",
+      value: "premium portfolio",
       href: "/",
     },
     {
@@ -578,6 +707,8 @@ const resumeContent: ResumeContent = {
       href: "mailto:grigorii584@gmail.com",
     },
   ],
+  snapshot: homeContent.trustStrip.snapshot,
+  highlights: resumeHighlights,
   skillGroups: resumeSkillGroups,
   experience: resumeExperience,
   selectedProjects: resumeProjects,
@@ -596,7 +727,7 @@ const resumeContent: ResumeContent = {
 export const siteContent: SiteContent = {
   meta: {
     name: "Grigorii",
-    role: "AI-enabled support systems operator for technical support, escalation, and workflow automation",
+    role: "Support systems operator for technical support, escalations, and AI-enabled workflows",
     location: "Russia | Remote",
     email: "grigorii584@gmail.com",
     phone: "+7-988-492-9938",
@@ -612,110 +743,20 @@ export const siteContent: SiteContent = {
     height: 2400,
   },
   description:
-    "English-first portfolio and resume for an AI-enabled support systems operator working across technical support, escalation, workflow automation, and product-facing signal packaging.",
+    "Premium portfolio and hiring dossier for Grigorii, focused on technical support, escalation systems, workflow automation, and public-safe proof.",
   nav: [
-    { label: "Work", href: "#cases" },
-    { label: "Systems", href: "#builds" },
-    { label: "Fit", href: "#strengths" },
+    { label: "Cases", href: "#cases" },
     { label: "Resume", href: "/resume" },
     { label: "Contact", href: "#contact" },
   ],
-  hero: {
-    eyebrow: "( SUPPORT-FIRST, SYSTEMS-SHAPED )",
-    title: "Support systems that scale.",
-    description:
-      "Support-first by training, systems-first in execution. I reduce repeated ticket noise, build operator tooling, and package customer signals into artifacts product, QA, and ops teams can actually use.",
-    positioning:
-      "Support Operations / Technical Support Specialist with AI automation and workflow systems leverage. Remote-ready.",
-    ctas: [
-      { label: "View case studies", href: "#cases", variant: "primary" },
-      { label: "Open resume", href: "/resume", variant: "secondary" },
-    ],
-    availability:
-      "Remote-first and interview-ready for support ops, technical support, incident-heavy support, and AI-adjacent operations roles.",
-    note:
-      "Public-safe packaging only. The site keeps shipped interfaces, operating logic, and proof metrics while leaving out internal-only workflow detail.",
-    signals: [
-      { value: "45%", label: "lower repetitive tier-1 volume" },
-      { value: "35%", label: "faster first response time" },
-      { value: "70%", label: "less manual operational load" },
-      { value: "112+", label: "indexed support items in one tool" },
-    ],
-  },
-  cases: {
-    eyebrow: "( FLAGSHIP CASES )",
-    title: "Three public-safe case studies where support work turns into clearer systems.",
-    intro:
-      "Workflow design, feedback intelligence, and product-facing packaging drawn from support-adjacent work and confidentiality-safe examples.",
-  },
-  builds: {
-    eyebrow: "( SELECTED TECHNICAL WORK )",
-    title: "Additional shipped systems that widen the read beyond a support dashboard.",
-    intro:
-      "Real builder proof from personal and public-safe work. These are not filler projects; they show the technical stack behind the operating claims.",
-    items: technicalProofs,
-  },
-  strengths: {
-    eyebrow: "( ROLE FIT )",
-    title: "The positioning is broader now, but the evidence stays disciplined.",
-    intro:
-      "Support-first credibility remains the foundation. The wider operator read comes from shipped systems and better packaging, not from inflated titles.",
-    items: [
-      {
-        eyebrow: "Support systems",
-        title: "Workflow automation and operator tooling",
-        description:
-          "Repeatable recovery flows, internal tooling, and lower-friction processes where consistency matters as much as speed.",
-      },
-      {
-        eyebrow: "Escalation quality",
-        title: "Incident handling and issue reproduction",
-        description:
-          "Bridge incidents, user trust, reproduction detail, and cleaner handoffs between support, QA, product, and engineering.",
-      },
-      {
-        eyebrow: "AI leverage",
-        title: "Signal packaging and systems thinking",
-        description:
-          "LLM-assisted workflows, structured feedback clustering, and artifacts that help teams act faster instead of rereading the same noise.",
-      },
-    ],
-  },
-  contact: {
-    eyebrow: "( CONTACT )",
-    title: "If you need support credibility with stronger systems leverage, we should talk.",
-    intro:
-      "Open to remote-first roles across support ops, technical support, escalation-heavy support, AI-enabled internal tooling, and product-facing operations.",
-    links: [
-      {
-        label: "Email",
-        value: "grigorii584@gmail.com",
-        href: "mailto:grigorii584@gmail.com",
-      },
-      {
-        label: "GitHub",
-        value: "github.com/CodeAvd",
-        href: "https://github.com/CodeAvd",
-      },
-      {
-        label: "Resume",
-        value: "Public resume",
-        href: "/resume",
-      },
-      {
-        label: "Portfolio source",
-        value: "github.com/CodeAvd/portfolio_v2",
-        href: "https://github.com/CodeAvd/portfolio_v2",
-      },
-      {
-        label: "Location",
-        value: "Russia | Remote",
-      },
-    ],
-  },
+  home: homeContent,
+  systems: systemsSection,
+  roleFit: roleFitSection,
+  contact: contactSection,
   footer:
-    "English ships first. Support-first credibility stays intact while the public packaging reads wider and cleaner.",
+    "Designed as a premium first impression that still behaves like a disciplined hiring document on the second read.",
   resume: resumeContent,
+  promptPack,
   caseStudies,
 };
 

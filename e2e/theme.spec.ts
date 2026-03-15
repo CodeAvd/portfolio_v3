@@ -5,10 +5,6 @@ test.describe("Theme Toggle", () => {
     await page.goto("/");
     
     // Get initial theme
-    const initialTheme = await page.evaluate(() => {
-      return document.documentElement.getAttribute("data-theme");
-    });
-    
     // Click dark theme button
     const darkButton = page.locator("[aria-label='Use dark theme']");
     await darkButton.click();
@@ -37,7 +33,7 @@ test.describe("Theme Toggle", () => {
     await page.locator("[aria-label='Use dark theme']").click();
     
     // Navigate to resume page
-    await page.click("text=Resume");
+    await page.locator("nav[aria-label='Primary']").getByRole("link", { name: "Resume" }).click();
     await page.waitForURL("**/resume");
     
     // Verify theme is still dark

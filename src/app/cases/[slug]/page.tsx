@@ -70,8 +70,7 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
 
   return (
     <main id="main-content" tabIndex={-1} className={styles.page} data-case-page>
-      {/* Navigation bar */}
-      <Reveal variant="fade" duration={0.6}>
+      <Reveal variant="fade" duration={0.45}>
         <div className={styles.navBar}>
           <div className={styles.navLeft}>
             <Link className={styles.backLink} href="/#cases">
@@ -86,116 +85,115 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
               ]}
             />
           </div>
-          <ThemeToggle />
+
+          <div className={styles.navRight}>
+            <Link className={styles.resumeLink} href="/resume">
+              Resume
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </Reveal>
 
-      {/* Hero section with staged entrance */}
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <Reveal variant="fade" delay={0.1} duration={0.7}>
-            <p className={styles.eyebrow}>
-              ({caseStudy.number}) {caseStudy.eyebrow}
-            </p>
-          </Reveal>
+        <Reveal className={styles.heroLead} variant="fade-up" duration={0.7}>
+          <p className={styles.eyebrow}>
+            ({caseStudy.number}) {caseStudy.eyebrow}
+          </p>
+          <h1 className={styles.heroTitle}>{caseStudy.title}</h1>
+          <p className={styles.heroSummary}>{caseStudy.summary}</p>
+          <p className={styles.heroOutcome}>{caseStudy.outcome}</p>
 
-          <Reveal variant="blur-to-crisp" delay={0.15} duration={1}>
-            <h1 className={styles.heroTitle}>{caseStudy.title}</h1>
-          </Reveal>
+          <div className={styles.heroTags}>
+            {caseStudy.tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </Reveal>
 
-          <Reveal variant="fade-up" delay={0.3} duration={0.8}>
-            <p className={styles.heroSummary}>{caseStudy.summary}</p>
-            <p className={styles.heroOutcome}>{caseStudy.outcome}</p>
+        <Reveal className={styles.heroRail} variant="fade-up" delay={0.08} duration={0.7}>
+          <aside className={styles.proofBox} data-case-proof-box>
+            <p className={styles.sectionLabel}>Proof box</p>
+            <p className={styles.recruiterRead}>{caseStudy.recruiterRead}</p>
 
-            <div className={styles.heroTags}>
-              {caseStudy.tags.map((tag) => (
-                <span key={tag} className={styles.tag}>
-                  {tag}
-                </span>
+            <div className={styles.metricList}>
+              {caseStudy.metrics.map((metric) => (
+                <div key={metric.label} className={styles.metricItem}>
+                  <span>{metric.value}</span>
+                  <strong>{metric.label}</strong>
+                  <small>{metric.note}</small>
+                </div>
               ))}
             </div>
-          </Reveal>
-        </div>
 
-        <Reveal className={styles.heroVisual} variant="scale-in" delay={0.2} duration={1}>
+            <div className={styles.proofActions}>
+              <Link className={styles.primaryAction} href="/resume">
+                Open resume
+              </Link>
+              <Link className={styles.secondaryAction} href="/#contact">
+                Contact
+              </Link>
+            </div>
+          </aside>
+
           <div className={styles.imageFrame}>
             <Image
               src={caseStudy.previewImage}
               alt={`${caseStudy.title} preview`}
               fill
               priority
-              sizes="(max-width: 920px) 100vw, 50vw"
+              sizes="(max-width: 960px) 100vw, 42vw"
               className={styles.heroImage}
             />
           </div>
         </Reveal>
       </section>
 
-      {/* Content grid with cascade rhythm */}
-      <section className={styles.contentGrid}>
-        <div className={styles.contentColumn}>
-          {caseStudy.sections.map((section, index) => (
-            <Reveal
-              key={section.title}
-              className={styles.sectionCard}
-              variant="fade-up"
-              delay={0.05 * index}
-              duration={0.7}
-            >
+      <Reveal className={styles.storySection} variant="fade-up" duration={0.7}>
+        <div className={styles.sectionHeading}>
+          <p className={styles.sectionLabel}>Narrative template</p>
+          <h2 className={styles.sectionTitle}>Situation, intervention, proof, result, artifacts, next step.</h2>
+        </div>
+
+        <div className={styles.storyGrid}>
+          {caseStudy.sections.map((section) => (
+            <article key={section.title} className={styles.storyCard}>
               <p className={styles.sectionLabel}>{section.title}</p>
-              <ul className={styles.sectionList}>
+              <ul className={styles.storyList}>
                 {section.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </Reveal>
+            </article>
           ))}
+
+          <article className={styles.storyCard}>
+            <p className={styles.sectionLabel}>Artifacts</p>
+            <div className={styles.artifactList}>
+              {caseStudy.artifacts.map((artifact) => (
+                <a
+                  key={artifact.label}
+                  className={styles.artifactLink}
+                  href={artifact.href}
+                  {...getExternalLinkProps(artifact.href)}
+                >
+                  {artifact.label}
+                </a>
+              ))}
+            </div>
+          </article>
         </div>
+      </Reveal>
 
-        <Reveal className={styles.rail} variant="fade-up" delay={0.15} duration={0.8}>
-          <aside className={styles.railCard}>
-            <div className={styles.railBlock}>
-              <p className={styles.sectionLabel}>Quick read</p>
-              <p className={styles.railText}>
-                This is the premium packaging of a public-safe case. It keeps the
-                operating logic visible without exposing internal-only workflow detail.
-              </p>
-            </div>
-
-            <div className={styles.railBlock}>
-              <p className={styles.sectionLabel}>Case metrics</p>
-              <ul className={styles.metricList}>
-                {caseStudy.metrics.map((metric) => (
-                  <li key={metric.label} className={styles.metricItem}>
-                    <span className={styles.metricValue}>{metric.value}</span>
-                    <span className={styles.metricName}>{metric.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.railBlock}>
-              <p className={styles.sectionLabel}>Artifacts</p>
-              <div className={styles.artifactList}>
-                {caseStudy.artifacts.map((artifact) => (
-                  <a
-                    key={artifact.label}
-                    className={styles.artifactLink}
-                    href={artifact.href}
-                    {...getExternalLinkProps(artifact.href)}
-                  >
-                    {artifact.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </aside>
-        </Reveal>
-      </section>
-
-      <Reveal className={styles.navigationFooter} variant="fade-up" delay={0.1}>
+      <Reveal className={styles.navigationFooter} variant="fade-up" duration={0.6}>
         <div className={styles.footerCard}>
-          <p className={styles.sectionLabel}>Continue reading</p>
+          <div>
+            <p className={styles.sectionLabel}>Continue reading</p>
+            <h2 className={styles.footerTitle}>Move through the appendix or return to the dossier.</h2>
+          </div>
+
           <div className={styles.footerLinks}>
             {adjacent.previous ? (
               <Link className={styles.footerLink} href={`/cases/${adjacent.previous.slug}`}>
@@ -212,8 +210,8 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
                 Next: {adjacent.next.title}
               </Link>
             ) : (
-              <Link className={styles.footerLink} href="/#contact">
-                Contact and positioning
+              <Link className={styles.footerLink} href="/resume">
+                Open resume dossier
               </Link>
             )}
           </div>

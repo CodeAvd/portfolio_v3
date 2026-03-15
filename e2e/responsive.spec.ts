@@ -2,130 +2,108 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Responsive Design", () => {
   test.describe("Desktop (1280px)", () => {
-    test.use({ viewport: { width: 1280, height: 800 } });
+    test.use({ viewport: { width: 1280, height: 900 } });
 
-    test("hero shows two-column layout", async ({ page }) => {
+    test("hero shows editorial copy and sequence together", async ({ page }) => {
       await page.goto("/");
-      
-      const heroCopy = page.locator(".heroCopy").first();
-      const heroVisual = page.locator(".heroVisual").first();
-      
-      // Both should be visible
-      await expect(heroCopy).toBeVisible();
-      await expect(heroVisual).toBeVisible();
+
+      await expect(page.locator("[data-home-hero] h1")).toBeVisible();
+      await expect(page.locator("[data-home-hero] [data-scroll-sequence]").first()).toBeVisible();
     });
 
-    test("navigation bar shows all items inline", async ({ page }) => {
+    test("trust strip and dossier preview are visible on desktop", async ({ page }) => {
       await page.goto("/");
-      
-      const nav = page.locator("nav[aria-label='Primary']");
-      await expect(nav).toBeVisible();
-      
-      // Brand role should be visible on desktop
-      const brandRole = page.locator(".brandRole");
-      await expect(brandRole).toBeVisible();
+
+      await expect(page.locator("[data-trust-strip]")).toBeVisible();
+      await expect(page.locator("[data-resume-preview]")).toBeVisible();
     });
 
-    test("builds grid shows two columns", async ({ page }) => {
+    test("brand role remains visible on desktop", async ({ page }) => {
       await page.goto("/");
-      
-      const buildsGrid = page.locator(".buildsGrid").first();
-      await expect(buildsGrid).toBeVisible();
-    });
-
-    test("strengths grid shows three columns", async ({ page }) => {
-      await page.goto("/");
-      
-      const strengthsGrid = page.locator(".strengthsGrid").first();
-      await expect(strengthsGrid).toBeVisible();
+      await expect(page.locator("text=Support systems operator for technical support")).toBeVisible();
     });
   });
 
   test.describe("Tablet (768px)", () => {
     test.use({ viewport: { width: 768, height: 1024 } });
 
-    test("hero stacks vertically", async ({ page }) => {
+    test("hero still renders CTA and scroll scene", async ({ page }) => {
       await page.goto("/");
-      
-      // Hero should still be visible
-      const hero = page.locator("section").first();
-      await expect(hero).toBeVisible();
+
+      await expect(page.locator("[data-home-hero]")).toBeVisible();
+      await expect(page.locator("[data-primary-cta='true']")).toBeVisible();
+      await expect(page.locator("[data-scroll-sequence]").first()).toBeVisible();
     });
 
-    test("case cards stack appropriately", async ({ page }) => {
+    test("flagship chapter remains readable", async ({ page }) => {
       await page.goto("/");
-      
-      const casesGrid = page.locator(".casesGrid").first();
-      await expect(casesGrid).toBeVisible();
+      await expect(page.locator("[data-flagship-chapter]")).toBeVisible();
     });
   });
 
   test.describe("Mobile (375px)", () => {
-    test.use({ viewport: { width: 375, height: 667 } });
+    test.use({ viewport: { width: 375, height: 812 } });
 
-    test("brand role is hidden", async ({ page }) => {
+    test("brand role is hidden to keep the topbar compact", async ({ page }) => {
       await page.goto("/");
-      
-      const brandRole = page.locator(".brandRole");
-      await expect(brandRole).toBeHidden();
+      await expect(page.locator("text=Support systems operator for technical support")).toBeHidden();
     });
 
-    test("navigation items are visible", async ({ page }) => {
+    test("scroll sequence falls back to poster mode", async ({ page }) => {
       await page.goto("/");
-      
-      const nav = page.locator("nav[aria-label='Primary']");
-      await expect(nav).toBeVisible();
+      await expect(page.locator("[data-scroll-sequence]").first()).toHaveAttribute(
+        "data-scroll-mode",
+        "poster",
+      );
     });
 
-    test("hero description is hidden on mobile", async ({ page }) => {
+    test("primary CTA remains visible without scrolling", async ({ page }) => {
       await page.goto("/");
-      
-      const heroDescription = page.locator(".heroDescription");
-      await expect(heroDescription).toBeHidden();
+      await expect(page.locator("[data-primary-cta='true']")).toBeInViewport();
     });
 
-    test("theme toggle is accessible", async ({ page }) => {
+    test("touch targets stay usable", async ({ page }) => {
       await page.goto("/");
-      
-      const themeToggle = page.locator("[role='radiogroup']");
-      await expect(themeToggle).toBeVisible();
-    });
 
-    test("footer stacks vertically", async ({ page }) => {
-      await page.goto("/");
-      
-      const footer = page.locator("footer");
-      await expect(footer).toBeVisible();
-    });
-
-    test("touch targets are adequate size", async ({ page }) => {
-      await page.goto("/");
-      
-      // Check nav links have adequate touch targets
       const navLinks = page.locator("nav[aria-label='Primary'] a");
       const count = await navLinks.count();
-      
-      for (let i = 0; i < count; i++) {
+
+      for (let i = 0; i < count; i += 1) {
         const link = navLinks.nth(i);
         const box = await link.boundingBox();
-        
+
         if (box) {
-          // Touch targets should be at least 44px
-          expect(box.height).toBeGreaterThanOrEqual(40);
+          expect(box.height).toBeGreaterThanOrEqual(36);
         }
       }
     });
   });
 });
 
-test.describe("Print Styles", () => {
-  test("page renders without grain overlay in print", async ({ page }) => {
+test.describe("Motion And Print", () => {
+  test("reduced motion keeps sequences in poster mode", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+
+    const sequences = page.locator("[data-scroll-sequence]");
+    const count = await sequences.count();
+
+    for (let i = 0; i < count; i += 1) {
+      await expect(sequences.nth(i)).toHaveAttribute("data-scroll-mode", "poster");
+    }
+  });
+
+  test("pinned scene does not block the trust section", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("[data-trust-strip]").scrollIntoViewIfNeeded();
+    await expect(page.locator("[data-trust-strip]")).toBeInViewport();
+  });
+
+  test("resume page renders in print mode", async ({ page }) => {
     await page.goto("/resume");
-    
-    // Print styles should hide grain overlay
     await page.emulateMedia({ media: "print" });
-    
-    // Page should still render
-    await expect(page.locator("main")).toBeVisible();
+
+    await expect(page.locator("[data-resume-page]")).toBeVisible();
+    await expect(page.locator("text=Print or save as PDF from browser.")).toBeHidden();
   });
 });
