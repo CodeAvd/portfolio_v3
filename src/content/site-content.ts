@@ -421,7 +421,7 @@ const resumeProjects: ResumeProject[] = [
 const homeContent: HomeContent = {
   hero: {
     eyebrow: "Editorial portfolio / recruiter-ready dossier",
-    title: "Calm systems for noisy support work.",
+    title: "Support work, cut to clarity.",
     description:
       "I turn repeated support pain into cleaner workflows, escalation artifacts, and public-safe proof that a recruiter or hiring manager can scan fast.",
     positioning:
@@ -628,8 +628,8 @@ const contactSection: ContactSection = {
     },
     {
       label: "Portfolio source",
-      value: "github.com/CodeAvd/portfolio_v2",
-      href: "https://github.com/CodeAvd/portfolio_v2",
+      value: "github.com/CodeAvd/portfolio_v3",
+      href: "https://github.com/CodeAvd/portfolio_v3",
     },
     {
       label: "Location",
@@ -732,7 +732,7 @@ export const siteContent: SiteContent = {
     email: "grigorii584@gmail.com",
     phone: "+7-988-492-9938",
     githubUrl: "https://github.com/CodeAvd",
-    portfolioRepoUrl: "https://github.com/CodeAvd/portfolio_v2",
+    portfolioRepoUrl: "https://github.com/CodeAvd/portfolio_v3",
     legacyPortfolioUrl: "https://codeavd.github.io/Portfolio/",
     resumeUrl: "/resume",
   },
@@ -746,6 +746,8 @@ export const siteContent: SiteContent = {
     "Premium portfolio and hiring dossier for Grigorii, focused on technical support, escalation systems, workflow automation, and public-safe proof.",
   nav: [
     { label: "Cases", href: "#cases" },
+    { label: "Capabilities", href: "#capabilities" },
+    { label: "Systems", href: "#systems" },
     { label: "Resume", href: "/resume" },
     { label: "Contact", href: "#contact" },
   ],
