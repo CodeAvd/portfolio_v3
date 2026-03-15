@@ -1,0 +1,380 @@
+.section {
+  position: relative;
+  min-height: calc((1 + var(--dossier-pin-range, 2.6)) * 100vh);
+  padding-top: clamp(1.25rem, 4vw, 2.5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.sticky {
+  position: sticky;
+  top: clamp(4.75rem, 10vh, 6.5rem);
+  width: var(--page-width);
+  min-height: calc(100vh - clamp(6rem, 12vh, 8rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(1.25rem, 2.4vw, 2.75rem);
+  align-items: center;
+}
+
+.copyColumn,
+.mediaColumn {
+  min-width: 0;
+}
+
+.copySurface {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.2rem, 2vw, 1.7rem);
+  border: 1px solid var(--border-default);
+  border-radius: clamp(1.5rem, 3vw, 2rem);
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(255, 250, 242, 0.84));
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .copySurface {
+  background: linear-gradient(180deg, rgba(23, 27, 31, 0.88), rgba(14, 17, 20, 0.84));
+}
+
+.eyebrow,
+.positioning,
+.stageCardHeader,
+.signalLabel,
+.signalContext,
+.mediaHeader {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.positioning,
+.signalContext {
+  color: var(--text-muted);
+}
+
+.eyebrow,
+.stageCardHeader,
+.mediaHeader {
+  font-size: 0.72rem;
+}
+
+.positioning {
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.headlineBlock {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.title,
+.signalValue,
+.mediaTitle {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.06em;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 5.35rem);
+  line-height: 0.94;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.stageLead {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.9vw, 1.45rem);
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.description,
+.heroMeta p,
+.signalContext,
+.mediaCaption {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.description {
+  max-width: 36rem;
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.actions[data-dossier-cta-emphasis="final"] :global(a[data-primary-cta="true"]) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px rgba(17, 21, 24, 0.18);
+}
+
+.metaBlock {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.proofLine {
+  margin: 0;
+  color: var(--accent-metallic);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.heroMeta {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.stageRail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stageCard {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.46);
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    background var(--transition-base);
+}
+
+[data-theme="dark"] .stageCard {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.stageCard[data-stage-active="true"] {
+  border-color: rgba(176, 138, 73, 0.52);
+  background: rgba(176, 138, 73, 0.1);
+  transform: translateY(-2px);
+}
+
+.stageCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.stageLabel {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.signalCard {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.95rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="dark"] .signalCard {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.signalValue {
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.signalLabel {
+  font-size: 0.72rem;
+  color: var(--text-primary);
+}
+
+.signalContext {
+  font-size: 0.72rem;
+}
+
+.mediaShell {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  min-height: min(72vh, 920px);
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(1.75rem, 3vw, 2.6rem);
+  border: 1px solid rgba(17, 21, 24, 0.08);
+  background: #ffffff;
+  box-shadow: 0 32px 110px rgba(18, 22, 26, 0.12);
+}
+
+.mediaCanvasWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, rgba(248, 246, 243, 0.96), rgba(255, 255, 255, 1)),
+    #ffffff;
+}
+
+.poster,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster {
+  z-index: 0;
+}
+
+.canvas {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.canvasVisible {
+  opacity: 1;
+}
+
+.mediaOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  pointer-events: none;
+}
+
+.mediaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(18, 22, 24, 0.58);
+}
+
+.mediaFooter {
+  margin-top: auto;
+  max-width: 24rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 42px rgba(22, 28, 32, 0.08);
+}
+
+.mediaTitle {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.3rem, 2vw, 1.85rem);
+  line-height: 1;
+  color: #15181b;
+}
+
+.mediaCaption {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(20, 24, 27, 0.72);
+}
+
+@media (max-width: 1180px) {
+  .sticky {
+    grid-template-columns: 1fr;
+    min-height: calc(100vh - 5rem);
+  }
+
+  .mediaShell {
+    min-height: min(62vh, 720px);
+  }
+}
+
+@media (max-width: 960px) {
+  .section {
+    min-height: calc((0.72 + var(--dossier-pin-range, 2.6)) * 100vh);
+  }
+
+  .sticky {
+    top: 5rem;
+  }
+
+  .copySurface,
+  .mediaFooter {
+    backdrop-filter: none;
+  }
+
+  .stageRail,
+  .signalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mediaShell {
+    min-height: min(48vh, 520px);
+  }
+}
+
+@media (max-width: 720px) {
+  .section {
+    min-height: calc((0.55 + var(--dossier-pin-range, 2.6)) * 100vh);
+    padding-top: 0.5rem;
+  }
+
+  .sticky {
+    top: 4.7rem;
+    min-height: calc(100vh - 5.5rem);
+  }
+
+  .copySurface {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: clamp(2.35rem, 11vw, 3.4rem);
+  }
+
+  .stageLead {
+    font-size: 1rem;
+  }
+}
+
+@media print {
+  .section {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .sticky {
+    position: static;
+    width: 100%;
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .copySurface,
+  .mediaShell,
+  .stageCard,
+  .signalCard,
+  .mediaFooter {
+    box-shadow: none;
+    background: white;
+  }
+}

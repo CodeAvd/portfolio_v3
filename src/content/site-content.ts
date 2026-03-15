@@ -49,6 +49,29 @@ const caseStudies: CaseStudy[] = [
         note: "Reduced variation in how compensation packages were assembled.",
       },
     ],
+    quickFacts: [
+      {
+        label: "Role",
+        value: "Customer Success Lead packaging an internal operator workflow into a stable artifact.",
+      },
+      {
+        label: "Context",
+        value: "High-volume game support work with repetitive compensation handling and cross-language operators.",
+      },
+      {
+        label: "Redaction",
+        value: "Internal tooling logic is abstracted, but the workflow structure and results stay visible.",
+      },
+      {
+        label: "Outcome",
+        value: "Faster, calmer, more consistent package preparation without lookup noise.",
+      },
+    ],
+    mediaAspect: "portrait",
+    heroTreatment: {
+      label: "Flagship support systems chapter",
+      note: "The cleanest proof of workflow design, operator empathy, and support-to-system translation.",
+    },
     sections: [
       {
         title: "Situation",
@@ -127,6 +150,29 @@ const caseStudies: CaseStudy[] = [
         note: "Helped collapse duplicates into decision-ready clusters.",
       },
     ],
+    quickFacts: [
+      {
+        label: "Role",
+        value: "Structured fragmented community sentiment into an escalation artifact for support and product conversations.",
+      },
+      {
+        label: "Context",
+        value: "Public bug and UX complaints spread across Steam, Discord, and community channels.",
+      },
+      {
+        label: "Redaction",
+        value: "Raw community detail is condensed into repeat themes and decision-ready framing.",
+      },
+      {
+        label: "Outcome",
+        value: "Shared reading of 23 structured items, 6 critical issues, and 3 repeat themes.",
+      },
+    ],
+    mediaAspect: "square",
+    heroTreatment: {
+      label: "Feedback intelligence case",
+      note: "Best read as support-to-product packaging rather than a generic research deck.",
+    },
     sections: [
       {
         title: "Situation",
@@ -209,6 +255,29 @@ const caseStudies: CaseStudy[] = [
         note: "The output was framed for fast review, not long theory documents.",
       },
     ],
+    quickFacts: [
+      {
+        label: "Role",
+        value: "Turned scattered player-friction reports into retention-oriented hypotheses and product questions.",
+      },
+      {
+        label: "Context",
+        value: "Signals arrived as public community complaints rather than formal internal analytics.",
+      },
+      {
+        label: "Redaction",
+        value: "The public-safe version preserves the logic and proof without exposing internal review flows.",
+      },
+      {
+        label: "Outcome",
+        value: "Community pain became named patterns, concise language, and short-loop experiment directions.",
+      },
+    ],
+    mediaAspect: "portrait",
+    heroTreatment: {
+      label: "Retention and friction analysis",
+      note: "A lightweight decision-support artifact, not a long-form product strategy deck.",
+    },
     sections: [
       {
         title: "Situation",
@@ -420,35 +489,152 @@ const resumeProjects: ResumeProject[] = [
 
 const homeContent: HomeContent = {
   hero: {
-    eyebrow: "Editorial portfolio / recruiter-ready dossier",
-    title: "Support work, cut to clarity.",
+    eyebrow: "Support-first. Systems-shaped. Recruiter-ready.",
+    title: "Technical support specialist building calmer systems.",
+    accessibleTitle: "Technical support specialist building calmer systems.",
+    titleLead: "Technical support specialist",
+    titleBridge: "building calmer",
+    typewriterWords: ["clarity", "evidence", "handoffs", "systems"],
     description:
-      "I turn repeated support pain into cleaner workflows, escalation artifacts, and public-safe proof that a recruiter or hiring manager can scan fast.",
+      "I turn repeated support pain into clearer workflows, stronger escalations, and public-safe proof a recruiter can scan in one sitting.",
     positioning:
-      "Support operations, technical support, escalations, and AI-enabled workflow design.",
+      "Technical support, support operations, escalation management, and AI-enabled internal workflow design.",
     ctas: [
-      { label: "Open resume", href: "/resume", variant: "primary" },
-      { label: "Email / Contact", href: "#contact", variant: "secondary" },
+      { label: "Resume", href: "/resume", variant: "primary" },
+      { label: "Contact", href: "#contact", variant: "secondary" },
     ],
     availability:
       "Remote-first and interview-ready for support ops, technical support, escalation-heavy support, and AI-adjacent operations roles.",
     note:
-      "The website is built as both a showcase and a trust document: strong visual direction on the surface, disciplined proof underneath.",
+      "This site is designed to feel cinematic on first contact and disciplined on the second read.",
     proofLine:
       "45% lower repetitive tier-1 volume / 35% faster first response / 70% less manual ops load",
+    signals: [
+      {
+        value: "45%",
+        label: "lower repetitive tier-1 volume",
+        context: "From AI-assisted workflows and tighter knowledge-base routing in a prior high-volume support environment.",
+      },
+      {
+        value: "35%",
+        label: "faster first response time",
+        context: "Delivered through cleaner issue tagging, escalation triage, and routing discipline.",
+      },
+      {
+        value: "70%",
+        label: "less manual ops load",
+        context: "Measured on an internal compensation workflow reworked into a repeatable support system.",
+      },
+    ],
     scene: {
       label: "Scene 01",
-      title: "The profile frame",
+      title: "Support systems dossier",
       caption:
-        "A premium first read that keeps the hiring signal visible instead of hiding it behind decoration.",
-      poster: "/images/profile/grigorii-portrait.png",
-      posterAlt: "Portrait of Grigorii used as the opening still for the portfolio.",
-      sources: [],
-      duration: 10,
-      pinRange: 2.2,
+        "A studio-white dossier sequence that turns hidden support complexity into a visible operating story.",
+      poster: "/scroll-sequences/dossier/book-poster-start.jpg",
+      posterEnd: "/scroll-sequences/dossier/book-poster-end.jpg",
+      posterAlt:
+        "Studio-white archival dossier sequence showing a closed book opening into an exploded support systems diagnosis.",
+      sources: [
+        {
+          src: "/scroll-sequences/dossier/book-sequence.mp4",
+          type: "video/mp4",
+        },
+        {
+          src: "/scroll-sequences/dossier/book-sequence.webm",
+          type: "video/webm",
+        },
+      ],
+      sequence: {
+        manifest: "/scroll-sequences/dossier/manifest.json",
+        framesDir: "/scroll-sequences/dossier/frames",
+      },
+      stages: [
+        {
+          label: "Closed dossier",
+          start: 0,
+          end: 0.2,
+          copy: "Turning support noise into evidence",
+        },
+        {
+          label: "Opening reveal",
+          start: 0.2,
+          end: 0.4,
+          copy: "Manual routing, payment friction, and unclear ownership start to surface.",
+        },
+        {
+          label: "Exploded diagnosis",
+          start: 0.4,
+          end: 0.6,
+          copy: "Under pressure, broken handoffs and hidden operational debt become visible.",
+        },
+        {
+          label: "Ordered intervention",
+          start: 0.6,
+          end: 0.8,
+          copy: "I redesign routing, ownership, and support flows into a clearer operating system.",
+        },
+        {
+          label: "Resolved state",
+          start: 0.8,
+          end: 1,
+          copy: "The result is calmer operations, clearer decisions, and a more stable customer experience.",
+        },
+      ],
+      duration: 12.166667,
+      pinRange: 2.6,
       mobileBehavior: "poster",
       reducedMotionFallback: "poster",
     },
+  },
+  bridge: {
+    eyebrow: "Transition / thesis bridge",
+    title: "Support credibility first. Systems leverage immediately after.",
+    intro:
+      "The point is not to look like an agency portfolio. The point is to make support proof feel decisive, contemporary, and easy to trust.",
+    detail:
+      "The strongest signal here is repeated operator work translated into cleaner tooling, cleaner escalation handoffs, and artifacts that product or ops teams can actually use.",
+    cta: {
+      label: "See selected proof",
+      href: "#cases",
+      variant: "secondary",
+    },
+  },
+  featuredCases: ["darkest-afk", "dig-dig-die", "vacation-cafe"],
+  capabilities: {
+    eyebrow: "What I actually do",
+    title: "Three capability pillars recruiters can verify fast.",
+    intro:
+      "The site leads with visual confidence, but the hiring read is still anchored in a small set of repeatable operating strengths.",
+    items: [
+      {
+        eyebrow: "Escalation systems",
+        title: "Calmer paths through messy, trust-sensitive support work",
+        description:
+          "Issue framing, escalation routing, and operator structure that reduce confusion when the underlying situation is noisy.",
+        proof:
+          "Best evidenced by the Dig Dig Die escalation view and prior transaction-heavy support operations.",
+        href: "/cases/dig-dig-die",
+      },
+      {
+        eyebrow: "Operator tooling",
+        title: "Internal tools that make repetitive recovery work less manual",
+        description:
+          "Workflow packaging, bilingual operator UX, and repeatable artifacts designed for the people doing the work every day.",
+        proof:
+          "Best evidenced by Darkest AFK and the 70% lower manual ops load compensation workflow.",
+        href: "/cases/darkest-afk",
+      },
+      {
+        eyebrow: "Feedback intelligence",
+        title: "Signal packaging that moves user pain toward action",
+        description:
+          "Clustered complaints, named patterns, and public-safe analysis that turns fragmented noise into a shared decision surface.",
+        proof:
+          "Best evidenced by Vacation Cafe and the cross-functional packaging style used across the case studies.",
+        href: "/cases/vacation-cafe",
+      },
+    ],
   },
   trustStrip: {
     eyebrow: "Recruiter snapshot",
@@ -567,6 +753,21 @@ const homeContent: HomeContent = {
     ],
     note:
       "The site is intentionally two-speed: memorable first impression, disciplined proof on the second read.",
+    meta: [
+      {
+        label: "GitHub",
+        value: "github.com/CodeAvd",
+        href: "https://github.com/CodeAvd",
+      },
+      {
+        label: "Location",
+        value: "Russia / Remote",
+      },
+      {
+        label: "Availability",
+        value: "Interview-ready now",
+      },
+    ],
   },
 };
 
@@ -746,8 +947,6 @@ export const siteContent: SiteContent = {
     "Premium portfolio and hiring dossier for Grigorii, focused on technical support, escalation systems, workflow automation, and public-safe proof.",
   nav: [
     { label: "Cases", href: "#cases" },
-    { label: "Capabilities", href: "#capabilities" },
-    { label: "Systems", href: "#systems" },
     { label: "Resume", href: "/resume" },
     { label: "Contact", href: "#contact" },
   ],

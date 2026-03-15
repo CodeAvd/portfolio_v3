@@ -35,6 +35,12 @@ export type SignalPill = {
   label: string;
 };
 
+export type ProofSignal = {
+  value: string;
+  label: string;
+  context: string;
+};
+
 export type TrustMetric = {
   value: string;
   label: string;
@@ -53,6 +59,14 @@ export type RoleFitItem = {
   description: string;
 };
 
+export type CapabilityItem = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  proof: string;
+  href?: string;
+};
+
 export type ContactLink = {
   label: string;
   value: string;
@@ -64,13 +78,28 @@ export type ScrollSource = {
   type: "video/mp4" | "video/webm";
 };
 
+export type ScrollSceneSequence = {
+  manifest: string;
+  framesDir: string;
+};
+
+export type ScrollSceneStage = {
+  label: string;
+  start: number;
+  end: number;
+  copy: string;
+};
+
 export type ScrollScene = {
   label: string;
   title: string;
   caption: string;
   poster: string;
+  posterEnd?: string;
   posterAlt: string;
   sources: ScrollSource[];
+  sequence?: ScrollSceneSequence;
+  stages?: ScrollSceneStage[];
   duration: number;
   pinRange: number;
   mobileBehavior: "poster" | "inline-video";
@@ -131,6 +160,16 @@ export type CaseStudySection = {
   items: string[];
 };
 
+export type CaseQuickFact = {
+  label: string;
+  value: string;
+};
+
+export type CaseHeroTreatment = {
+  label: string;
+  note: string;
+};
+
 export type CaseStudy = {
   slug: string;
   number: string;
@@ -142,6 +181,9 @@ export type CaseStudy = {
   previewImage: string;
   tags: string[];
   metrics: ProofMetric[];
+  quickFacts: CaseQuickFact[];
+  mediaAspect: "portrait" | "square" | "landscape";
+  heroTreatment?: CaseHeroTreatment;
   sections: CaseStudySection[];
   artifacts: ArtifactLink[];
 };
@@ -202,13 +244,32 @@ export type HomeContent = {
   hero: {
     eyebrow: string;
     title: string;
+    accessibleTitle: string;
+    titleLead: string;
+    titleBridge: string;
+    typewriterWords: string[];
     description: string;
     positioning: string;
     ctas: ActionLink[];
     availability: string;
     note: string;
     proofLine: string;
+    signals: ProofSignal[];
     scene: ScrollScene;
+  };
+  bridge: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    detail: string;
+    cta: ActionLink;
+  };
+  featuredCases: string[];
+  capabilities: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    items: CapabilityItem[];
   };
   trustStrip: {
     eyebrow: string;
@@ -244,6 +305,7 @@ export type HomeContent = {
     intro: string;
     ctas: ActionLink[];
     note: string;
+    meta: ContactLink[];
   };
 };
 
