@@ -4,20 +4,12 @@ test.describe("Case Study Pages", () => {
   test.describe("Page Structure", () => {
     test("case study page has all required sections", async ({ page }) => {
       await page.goto("/cases/darkest-afk");
-      
-      // Main content should be present
+
       await expect(page.locator("#main-content")).toBeVisible();
-      
-      // Hero section with title
       await expect(page.locator("h1")).toBeVisible();
-      
-      // Tags should be displayed
-      const tags = page.locator(".tag");
-      await expect(tags.first()).toBeVisible();
-      
-      // Metrics should be present
-      const metrics = page.locator(".metricValue");
-      await expect(metrics.first()).toBeVisible();
+
+      await expect(page.getByText("112+ indexed items", { exact: true })).toBeVisible();
+      await expect(page.getByText("Case metrics")).toBeVisible();
     });
 
     test("breadcrumbs show correct hierarchy", async ({ page }) => {
@@ -46,29 +38,16 @@ test.describe("Case Study Pages", () => {
 
     test("navigation footer shows adjacent cases", async ({ page }) => {
       await page.goto("/cases/darkest-afk");
-      
-      // Should have continue reading section
-      const continueReading = page.locator("text=Continue reading");
-      await expect(continueReading).toBeVisible();
-      
-      // Should have navigation links
-      const footerLinks = page.locator(".footerLink");
-      await expect(footerLinks).toHaveCount(2);
+
+      await expect(page.getByText("Continue reading")).toBeVisible();
+      await expect(page.getByRole("link", { name: /Next:/ })).toBeVisible();
     });
 
     test("can navigate between case studies", async ({ page }) => {
       await page.goto("/cases/darkest-afk");
-      
-      // Click next case link
-      const nextLink = page.locator(".footerLink").last();
-      const nextText = await nextLink.textContent();
-      
-      if (nextText?.includes("Next:")) {
-        await nextLink.click();
-        
-        // Should be on a different case page
-        await expect(page.locator("[data-case-page]")).toBeVisible();
-      }
+
+      await page.getByRole("link", { name: /Next:/ }).click();
+      await expect(page.locator("[data-case-page]")).toBeVisible();
     });
   });
 
@@ -78,14 +57,9 @@ test.describe("Case Study Pages", () => {
       
       for (const slug of caseSlugs) {
         await page.goto(`/cases/${slug}`);
-        
-        // Each page should have a title
-        const title = page.locator("h1");
-        await expect(title).toBeVisible();
-        
-        // Should have metrics
-        const metrics = page.locator(".metricValue");
-        await expect(metrics.first()).toBeVisible();
+
+        await expect(page.locator("h1")).toBeVisible();
+        await expect(page.getByText("Artifacts")).toBeVisible();
       }
     });
 
@@ -115,9 +89,8 @@ test.describe("Case Study Pages", () => {
   test.describe("Visual", () => {
     test("hero image loads correctly", async ({ page }) => {
       await page.goto("/cases/darkest-afk");
-      
-      const heroImage = page.locator(".heroImage");
-      await expect(heroImage).toBeVisible();
+
+      await expect(page.getByAltText(/Darkest AFK compensation workflow preview/)).toBeVisible();
     });
 
     test("theme toggle works on case pages", async ({ page }) => {

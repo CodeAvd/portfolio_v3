@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/portfolio/breadcrumbs";
+import { BrandLockup } from "@/components/portfolio/brand-lockup";
 import { Reveal } from "@/components/portfolio/reveal";
 import { ThemeToggle } from "@/components/portfolio/theme-toggle";
 import {
@@ -74,6 +75,7 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
       <Reveal variant="fade" duration={0.6}>
         <div className={styles.navBar}>
           <div className={styles.navLeft}>
+            <BrandLockup compact href="/" />
             <Link className={styles.backLink} href="/#cases">
               Back to portfolio
             </Link>
@@ -157,8 +159,8 @@ export default async function CaseStudyPage({ params }: CasePageProps) {
             <div className={styles.railBlock}>
               <p className={styles.sectionLabel}>Quick read</p>
               <p className={styles.railText}>
-                This is the premium packaging of a public-safe case. It keeps the
-                operating logic visible without exposing internal-only workflow detail.
+                Public-safe Signal Ledger packaging. The operating logic stays legible
+                without exposing internal-only workflow detail.
               </p>
             </div>
 
